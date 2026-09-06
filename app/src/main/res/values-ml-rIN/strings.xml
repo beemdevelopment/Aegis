@@ -365,12 +365,15 @@
     <string name="backup_error_bar_message"><b>വോൾട്ട് ബാക്കപ്പ് അടുത്തിടെ പരാജയപ്പെട്ടു</b></string>
     <string name="backup_system_builtin">ഏജീസ നിർമ്മിച്ചിരിക്കുന്നത് ഓട്ടോമാറ്റിക് ബാക്കപ്പുകൾ</string>
     <string name="backup_system_android">ആൻഡ്രോയിഡ് ക്ലൗഡ് ബാക്കപ്പ് സിസ്റ്റം</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">         ഏറ്റവും പുതിയ ബാക്കപ്പ് കാലഹരണപ്പെട്ടതാണ് (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+         ഏറ്റവും പുതിയ ബാക്കപ്പ് കാലഹരണപ്പെട്ടതാണ് (%s)
     </string>
-    <string name="backup_reminder_bar_message">         മാറ്റങ്ങൾ ബാക്കപ്പ് ചെയ്തിട്ടില്ല
+    <string name="backup_reminder_bar_message">
+         മാറ്റങ്ങൾ ബാക്കപ്പ് ചെയ്തിട്ടില്ല
     </string>
     <string name="backup_reminder_bar_dialog_title">മാറ്റങ്ങൾ ബാക്കപ്പ് ചെയ്തിട്ടില്ല</string>
-    <string name="backup_reminder_bar_dialog_summary">നിലവറയിലെ സമീപകാല മാറ്റങ്ങൾ ഇതുവരെ ബാക്കപ്പ് ചെയ്തിട്ടില്ല. നിങ്ങളുടെ അക്കൗണ്ടുകളിലേക്കുള്ള ആക്‌സസ് നഷ്‌ടപ്പെടുന്നത് തടയാൻ പതിവായി ബാക്കപ്പുകൾ എടുക്കേണ്ടത് പ്രധാനമാണ്. ക്രമീകരണ മെനുവിൽ സ്വയമേവയുള്ള ബാക്കപ്പുകൾ സജ്ജീകരിക്കുന്നത് പരിഗണിക്കുക.    </string>
+    <string name="backup_reminder_bar_dialog_summary">
+നിലവറയിലെ സമീപകാല മാറ്റങ്ങൾ ഇതുവരെ ബാക്കപ്പ് ചെയ്തിട്ടില്ല. നിങ്ങളുടെ അക്കൗണ്ടുകളിലേക്കുള്ള ആക്‌സസ് നഷ്‌ടപ്പെടുന്നത് തടയാൻ പതിവായി ബാക്കപ്പുകൾ എടുക്കേണ്ടത് പ്രധാനമാണ്. ക്രമീകരണ മെനുവിൽ സ്വയമേവയുള്ള ബാക്കപ്പുകൾ സജ്ജീകരിക്കുന്നത് പരിഗണിക്കുക.    </string>
     <string name="backup_reminder_bar_dialog_accept">ബാക്കപ്പുകൾ സജ്ജീകരിക്കുക</string>
     <string name="backup_plaintext_export_warning"><b>നിലവറ അടുത്തിടെ പ്ലെയിൻ ടെക്‌സ്‌റ്റിൽ കയറ്റുമതി ചെയ്‌തു</b></string>
     <string name="pref_show_plaintext_warning_hint">ഈ മുന്നറിയിപ്പ് വീണ്ടും കാണിക്കരുത്</string>

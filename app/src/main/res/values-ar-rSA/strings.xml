@@ -6,12 +6,12 @@
     <string name="action_transfer">انقل</string>
     <string name="action_edit_icon">حرّر الأيقونة</string>
     <string name="action_reset_usage_count">صفّر عداد الاستخدام</string>
-    <string name="action_reset_usage_count_dialog">هل أنت متأكد من رغبتك في تعيين عدد الاستخدام لهذا الإدخال إلى 0؟</string>
+    <string name="action_reset_usage_count_dialog">أمتأكد من رغبتك في تعيين عدد الاستخدام لهذا المُدخل إلى 0؟</string>
     <string name="action_default_icon">استعد الأيقونة الافتراضية</string>
     <string name="discard">تجاهل</string>
     <string name="save">احفظ</string>
     <string name="all">الكل</string>
-    <string name="issuer">المصدِّر</string>
+    <string name="issuer">المُصدِّر</string>
     <string name="yandex_pin">رمز PIN (يتكون من 4-16 رقمًا)</string>
     <string name="motp_pin">رمز PIN (4 أرقام)</string>
     <string name="suggested">مقترح</string>
@@ -37,7 +37,7 @@
     <string name="pref_section_icon_packs_summary">أدِر واستورد حزم الأيقونات</string>
     <string name="pref_select_theme_title">السمة</string>
     <string name="pref_dynamic_colors_title">ألوان ديناميكية</string>
-    <string name="pref_dynamic_colors_summary">قم بتطبيق تراكب يعتمد على ألوان سمة الأندرويد الخاصة بك</string>
+    <string name="pref_dynamic_colors_summary">طبّق تراكب يعتمد على ألوان سمة الأندرويد الخاصة بك</string>
     <string name="pref_view_mode_title">نمط العرض</string>
     <string name="pref_lang_title">اللغة</string>
     <string name="pref_show_icons_title">أظهر الأيقونات</string>
@@ -51,13 +51,13 @@
     <string name="pref_expiration_state_summary">غيّر لون الرموز البرمجية وجعلها غير واضحة عندما تكون على وشك الانتهاء</string>
     <string name="pref_expiration_state_fallback">غيّر لون الرموز عندما تكون على وشك الانتهاء</string>
     <string name="pref_shared_issuer_account_name_title">أظهر اسم الحساب فقط عند الضرورة</string>
-    <string name="pref_shared_issuer_account_name_summary">أظهر أسماء الحسابات فقط عندما يشتركون نفس المصدر. سيتم إخفاء أسماء الحسابات الأخرى.</string>
-    <string name="pref_account_name_position_summary_override">تم تجاوز هذا الإعداد بوضع عرض المربعات. سيتم عرض اسم الحساب أسفل المُصدّر.</string>
+    <string name="pref_shared_issuer_account_name_summary">أظهر أسماء الحسابات فقط عندما يشتركون نفس المُصدِّر. سيتم إخفاء أسماء الحسابات الأخرى.</string>
+    <string name="pref_account_name_position_summary_override">تم تجاوز هذا الإعداد بوضع عرض مربعات. سيتم عرض اسم الحساب أسفل المُصدّر.</string>
     <string name="pref_import_file_title">استورد من ملف</string>
     <string name="pref_import_file_summary">استورد الرموز من ملف</string>
     <string name="pref_android_backups_title">النُسخ الاحتياطية السحابية للأندرويد</string>
     <string name="pref_android_backups_summary">اسمح لنظام النسخ الاحتياطي لأندرويد بإدراج خزانة Aegis في النُسخ الاحتياطية الخاصة به. هذا مدعوم فقط للمخازن المُعمَّاة.</string>
-    <string name="pref_android_backups_hint"><i>النسخ الاحتياطي من جهاز لجهاز (D2D) مسموح به دائماً، بغض النظر عن الخَيار أعلاه</i></string>
+    <string name="pref_android_backups_hint"><i>النسخ الاحتياطي من جهاز لجهاز (D2D) مسموح به دائمًا، بغض النظر عن الخَيار أعلاه</i></string>
     <string name="pref_backups_title">انسخ تلقائيًا الخزينة</string>
     <string name="pref_backups_summary">أنشئ تلقائيًا نُسخ احتياطية للمخزن على الذاكرة الخارجية عند إجراء تغييرات هذا مدعوم للمخازن المُعمَّاة فقط.</string>
     <string name="pref_backups_reminder_title">تذكير النسخ الاحتياطي</string>
@@ -70,8 +70,8 @@
     <string name="pref_backups_versioning_strategy_single_backup_warning">استراتيجية النسخ الاحتياطي المحددة غير موثوقة ولا يُنصح بها. فشل احتياطي واحد يمكن أن يؤدي إلى فقدان النسخة الاحتياطية الوحيدة.</string>
     <string name="pref_backups_versioning_strategy_dialog_title">حدّد استراتيجية النسخ الاحتياطي</string>
     <string name="pref_backups_location_title">موقع النسخة الاحتياطية</string>
-    <string name="pref_backups_location_summary">سيتم تخزين النُسخ الاحتياطية في</string>
-    <string name="pref_backup_location_summary">سيتم تخزين النسخ الاحتياطي في</string>
+    <string name="pref_backups_location_summary">ستُخزّن النُسخ الاحتياطية في</string>
+    <string name="pref_backup_location_summary">ستُخزّن النسخ الاحتياطي في</string>
     <string name="pref_backups_trigger_title">اصنع نسخة احتياطية</string>
     <string name="pref_backups_trigger_summary">اصنع نسخة احتياطية يدويًّا</string>
     <string name="pref_backups_versions_title">عدد الإصدارات المراد الاحتفاظ بها</string>
@@ -125,9 +125,9 @@
     <string name="pref_biometrics_title">فتح المقاييس الحيوية</string>
     <string name="pref_biometrics_summary">اسمح بالاستيثاق المقاييس الحيوية لفتح قفل المخزن</string>
     <string name="pref_search_behavior_summary">البحث من خلال: %s</string>
-    <string name="pref_search_behavior_prompt">البحث في أي من الحقول التالية</string>
+    <string name="pref_search_behavior_prompt">ابحث في أي من الحقول التالية</string>
     <string name="pref_search_behavior_type_name">الاسم</string>
-    <string name="pref_search_behavior_type_issuer">المصدِّر</string>
+    <string name="pref_search_behavior_type_issuer">المُصدِّر</string>
     <string name="pref_search_behavior_type_note">ملاحظة</string>
     <string name="pref_search_behavior_type_groups">المجموعات</string>
     <string name="pref_set_password_title">غيّر كلمة السر</string>
@@ -179,7 +179,7 @@
     <string name="authentication_method_none_description">لا حاجة لكلمة السر لفك قفل المخزن، ولن يتم تعميته. <b>لا يُنصح بهذا الخيار</b>.</string>
     <string name="authentication_method_password">كلمة السر</string>
     <string name="authentication_method_password_description">كلمة السر مطلوبة لفك قفل المخزن.</string>
-    <string name="authentication_method_password_explanation">تحذير: إذا نسيت كلمة السر، فلن تستطيع الوصول الرموز نهائيًا. لا توجد طريقة لاستعادتهم بدون كلمة السر.</string>
+    <string name="authentication_method_password_explanation">تحذير: إذا نسيت كلمة السر، فلن تستطيع الوصول إلى رموزك نهائيًا. لا توجد طريقة لاستعادتهم بدون كلمة السر.</string>
     <string name="authentication_method_biometrics">المقاييس الحيوية</string>
     <string name="authentication_method_biometrics_description">بالإضافة إلى كلمة السر، يمكن استعمال المقاييس الحيوية المسجلة على هذا الجهاز، مثل البصمة أو وجهك، لفك قفل المخزن.</string>
     <string name="authentication">افتح المخزن</string>
@@ -199,6 +199,7 @@
     <string name="password_reminder_freq_biweekly">كل أسبوعين</string>
     <string name="password_reminder_freq_monthly">شهريًا</string>
     <string name="password_reminder_freq_quarterly">كل ثلاثة أشهر</string>
+    <string name="enter_password_proton_message">يبدو أن نُسخة Proton Authenticator هذه مُعمّاة. يُرجى إدخال كلمة السر أدناه.</string>
     <string name="enter_password_2fas_message">يبدو أن نُسخة 2FAS الاحتياطية مُعمَّاة، الرجاء إدخال كلمة السر أدناه.</string>
     <string name="enter_password_authy_message">يبدو أن رموز Authy الخاصة بك مُعمَّاة. الرجاء إغلاق Aegis، وفتح Authy وفتح قفل الرموز بكلمة سرك. بدلًا من ذلك، Aegis يمكنه أيضًا محاولة فك تعمية رموز Authy الخاصة بك، إذا أدخلت كلمة سرك أدناه.</string>
     <string name="enter_password_aegis_title">الرجاء إدخال كلمة سر الاستيراد</string>
@@ -215,7 +216,7 @@
     <string name="digits">الأرقام</string>
     <string name="secret">السر</string>
     <string name="scan">امسح رمز QR</string>
-    <string name="scan_image">امسح الصورة</string>
+    <string name="scan_image">امسح صورة</string>
     <string name="enter_manually">أدخل يدويًا</string>
     <string name="set_up_biometric">عيّن الفتح المقاييس الحيوية</string>
     <string name="copy">انسخ</string>
@@ -255,7 +256,7 @@
     </plurals>
     <string name="importing_icon_pack">جارِ استيراد حزمة الأيقونات</string>
     <string name="delete_entry">احذف المدخلات</string>
-    <string name="delete_entry_description">هل ترغب حقًا في حذف هذا المدخل؟</string>
+    <string name="delete_entry_description">أترغب حقًا في حذف هذا المُدخل؟</string>
     <string name="delete_entry_explanation">هذا الإجراء لا يعطل 2FA الخاص ب:\n<b>%s</b>\n\n لتجنب فقدان الوصول، تأكد من تعطيل الاستيثاق الثنائي (2FA) أو أن لديك طريقة بديلة لتوليد الرموز لهذه الخدمة.</string>
     <string name="delete_entries">احذف المدخلات</string>
     <plurals name="delete_entries_description">
@@ -271,9 +272,9 @@
     <string name="saving_profile_error">حدث خطأ أثناء حفظ الملف الشخصي</string>
     <string name="saving_assign_icons_error">خطأ في تعيين الأيقونات</string>
     <string name="welcome">مرحبًا</string>
-    <string name="app_description">Aegis تطبيق مصادقة ثنائية مجاني، وآمن، ومفتوح المصدر</string>
+    <string name="app_description">تطبيق Aegis، استيثاق ثنائي مجاني وآمن ومفتوح المصدر</string>
     <string name="setup_completed">اكتمل الإعداد</string>
-    <string name="setup_completed_description">أُعِد Aegis وهو جاهز للعمل.</string>
+    <string name="setup_completed_description">أُعِدَّ Aegis وهو جاهز للعمل.</string>
     <string name="vault_not_found">لم يُعثر على مخزن، بدء الإعداد…</string>
     <string name="copied">نُسِخ</string>
     <string name="errors_copied">نُسِخ الخطأ للحافظة</string>
@@ -288,7 +289,7 @@
     <string name="biometric_decrypt_error">حدث خطأ أثناء محاولة فك تعمية المخزن بالاستيثاق المقاييس الحيوية. هذا يحدث عادةً فقط إن غُيّر إعدادات أمان جهازك. الرجاء فك قفل المخزن بكلمة سرك وإعادة تعيين الاستيثاق المقاييس الحيوية داخل إعدادات Aegis.</string>
     <string name="biometric_init_error">حدث خطأ أثناء محاولة تحضير الاستيثاق المقاييس الحيوية. هذا يحدث عادةً فقط إن غُيّر إعدادات أمان جهازك. الرجاء فك قفل المخزن بكلمة سرك وإعادة تعيين الاستيثاق المقاييس الحيوية داخل إعدادات Aegis.</string>
     <string name="disable_encryption">عطِّل التعمية</string>
-    <string name="disable_encryption_description">هل أنت متأكد من أنك تريد تعطيل التعمية؟ سيؤدي هذا إلى تخزين المخزن في نص عادي. <b>سيتم تعطيل النُسخ الاحتياطية التلقائية أيضًا</b>.</string>
+    <string name="disable_encryption_description">أمتأكد من أنك تريد تعطيل التعمية؟ سيؤدي هذا إلى تخزين المخزن في نص عادي. <b>سيتم تعطيل النُسخ الاحتياطية التلقائية أيضًا</b>.</string>
     <string name="enable_encryption_error">حدث خطأ أثناء تفعيل التعمية</string>
     <string name="disable_encryption_error">حدث خطأ أثناء تعطيل التعمية</string>
     <string name="backup_successful">تم جدولة النسخ الاحتياطي بنجاح</string>
@@ -323,7 +324,7 @@
     <string name="parsing_file_error">حدث خطأ أثناء محاولة تحليل الملف</string>
     <string name="file_not_found">خطأ: لم يُعثر على الملف</string>
     <string name="reading_file_error">حدث خطأ أثناء محاولة قراءة الملف</string>
-    <string name="app_lookup_error">خطأ: التطبيق غير مثبت</string>
+    <string name="app_lookup_error">خطأ: التطبيق غير مثبّت</string>
     <string name="app_version_error">نُسخة %s المثبتة غير مدعومة. أصبحت الإصدارات الحديثة تقوم بتعمية بعض الملفات في مجلد التخزين الداخلي، مما يجعل Aegis غير قادر على الوصول إلى المعلومات التي يحتاجها من أجل الاستيراد. محاولة الاستيراد من المرجح أن تؤدي إلى خطأ. هل ترغب في الاستمرار على أي حال؟</string>
     <string name="root_error">خطأ: تعذر الحصول على حق الوصول إلى الجذر</string>
     <plurals name="imported_entries_count">
@@ -352,7 +353,7 @@
     <string name="read_qr_error">حدث خطأ أثناء محاولة قراءة رمز QR</string>
     <string name="read_qr_error_phonefactor">Aegis غير متوافق مع خوارزمة 2FA الخاصة بمايكروسوفت. الرجاء التأكد من تحديد \"إعداد التطبيق دون إشعارات\" عند إعداد 2FA في Office 365.</string>
     <string name="partial_google_auth_import">اكتُشف تصدير Google Authenticator غير مكتمل</string>
-    <string name="partial_google_auth_import_warning">بعض رموز QR مفقودة من الاستيراد. لم يتم العثور على الرموز التالية:\n\n<b>%s</b>\n\nيمكنك الاستمرار في استيراد هذا التصدير الجزئي ولكننا نوصي بإعادة المحاولة باستخدام جميع رموز QR حتى لا تخاطر بفقدان الوصول إلى أي رموز.</string>
+    <string name="partial_google_auth_import_warning">بعض رموز QR مفقودة من الاستيراد. لم يُعثر على الرموز التالية:\n\n<b>%s</b>\n\nيمكنك الاستمرار في استيراد هذا التصدير الجزئي ولكننا نوصي بإعادة المحاولة باستخدام جميع رموز QR حتى لا تخاطر بفقدان الوصول إلى أي رموز.</string>
     <string name="missing_qr_code_descriptor">• رمز QR %d</string>
     <plurals name="import_partial_export_anyway">
         <item quantity="zero">استورد %d رموز على أي حال</item>
@@ -376,12 +377,12 @@
     <string name="remove_icon_pack_description">هل أنت متأكد من أنك تريد إزالة حزمة الأيقونات هذه؟ لن تتأثر المدخلات التي تستخدم الرموز من هذه الحزمة.</string>
     <string name="details">التفاصيل</string>
     <string name="show_error_details">أظهر تفاصيل الخطأ</string>
-    <string name="lock">قفل</string>
+    <string name="lock">اقفل</string>
     <string name="name">الاسم</string>
     <string name="no_group">بلا مجموعة</string>
     <string name="sort" comment="Title of the Sort button in the top action bar of the main view">افرز</string>
-    <string name="sort_alphabetically">المصدِّر (أ إلى ي)</string>
-    <string name="sort_alphabetically_reverse">المصدِّر (ي إلى أ)</string>
+    <string name="sort_alphabetically">المُصدِّر (أ إلى ي)</string>
+    <string name="sort_alphabetically_reverse">المُصدِّر (ي إلى أ)</string>
     <string name="sort_alphabetically_name">الحساب (أ إلى ي)</string>
     <string name="sort_alphabetically_name_reverse">الحساب (ي إلى أ)</string>
     <string name="sort_usage_count">عدد مرات الاستخدام</string>
@@ -400,7 +401,7 @@
     <string name="note" comment="Users can add a note to an entry">ملاحظة</string>
     <string name="clear">امحُ</string>
     <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">إدخال مكرر</string>
-    <string name="dialog_duplicate_entry_message">هذا الإدخال يحمل نفس الاسم والمصدر كواحد أو أكثر من الإدخالات الموجودة. كيف ترغب في المتابعة؟</string>
+    <string name="dialog_duplicate_entry_message">هذا الإدخال يحمل نفس الاسم والمُصدِّر كواحد أو أكثر من الإدخالات الموجودة. كيف ترغب في المتابعة؟</string>
     <string name="dialog_duplicate_entry_overwrite_title">الكتابة فوق إدخال/إدخالات موجودة</string>
     <string name="dialog_duplicate_entry_overwrite_subtitle">استبدل الإدخال أو الإدخالات الموجودة بالإدخال الجديد. لا يمكن التراجع عن هذا الإجراء</string>
     <string name="dialog_duplicate_entry_suffix_title">أضف لاحقة</string>
@@ -441,8 +442,8 @@
     <string name="normal_viewmode_title">عادي</string>
     <string name="compact_mode_title">مدمج</string>
     <string name="small_mode_title">صغير</string>
-    <string name="tiles_mode_title">البلاط</string>
-    <string name="unknown_issuer">مصدِّر غير معروف</string>
+    <string name="tiles_mode_title">مربعات</string>
+    <string name="unknown_issuer">مُصدِّر غير معروف</string>
     <string name="unknown_account_name">اسم الحساب غير معروف</string>
     <plurals name="import_error_dialog">
         <item quantity="zero">تعذر Aegis استيراد %d رمز. سيتم تخطي هذا الرمز. اضغط \'التفاصيل\' للاطلاع على مزيد من المعلومات حول الخطأ.</item>
@@ -469,7 +470,7 @@
     <string name="version">الإصدار</string>
     <string name="changelog">سجلّ التغيير</string>
     <string name="whats_new">ما الجديد</string>
-    <string name="github_description">المصدر البرمجي، والعلل، والمعلومات</string>
+    <string name="github_description">المصدر البرمجي والعلل والمعلومات</string>
     <string name="license">الرخصة</string>
     <string name="license_description">Aegis Authenticator مرخص بموجب GPLv3</string>
     <string name="third_party_licenses">تراخيص طرف ثالث</string>
@@ -483,7 +484,7 @@
     <string name="webview_error">هذا الجهاز لا يدعم عرض الويب، والذي هو ضروري لعرض سجلّ التغيير و الرخصة. إنه مكوِّن نظام مفقود.</string>
     <string name="email">البريد الإلكتروني</string>
     <string name="time_sync_warning_title">مزامنة الوقت تلقائيًا</string>
-    <string name="time_sync_warning_message">يعتمد Aegis على وقت النظام لتوليد الأكواد الصحيحة. انحراف بمقادر بضعة ثواني يمكن أن يؤدي إلى أكواد خاطئة. يبدوا أن جهازك غير معيّن إلى مزامنة الوقت تلقائيًا. هل ترغب بفعل ذلك الآن؟</string>
+    <string name="time_sync_warning_message">يعتمد Aegis على وقت النظام لتوليد رموز صحيحة. انحراف بمقادر بضعة ثواني يمكن أن يؤدي إلى رموز خاطئة. يبدو أن جهازك غير معيّن إلى مزامنة الوقت تلقائيًا. أترغب بفعل ذلك الآن؟</string>
     <string name="time_sync_warning_disable">توقف عن تحذيري. أعرف ماذا أفعل.</string>
     <string name="google_qr_export_unrelated">عُثر على رمز QR لا علاقة له. حاول إعادة تشغيل الماسح.</string>
     <plurals name="google_qr_export_scanned">
@@ -496,27 +497,32 @@
     </plurals>
     <string name="google_qr_export_unexpected">انتظرت رمز QR #%1$d، ولكن مسحت #%2$d بدلًا منه</string>
     <string name="backup_error_bar_message"><b>النسخ الاحتياطي للمخزن فشل مؤخرًا</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">         فشلت محاولة النسخ الاحتياطي للمخزون باستخدام %1$s بسبب حدوث خطأ. تمت محاولة النسخ الاحتياطي %2$s. الرجاء التحقق من إعدادات النسخ الاحتياطي للتأكد من أن النسخ الاحتياطي يمكن أن يكتمل بنجاح.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+         فشلت محاولة النسخ الاحتياطي للمخزون باستخدام %1$s بسبب حدوث خطأ. تمت محاولة النسخ الاحتياطي %2$s. الرجاء التحقق من إعدادات النسخ الاحتياطي للتأكد من أن النسخ الاحتياطي يمكن أن يكتمل بنجاح.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">فشلت محاولة النسخ الاحتياطي الأخيرة للمخزون باستخدام %1$s لأن Aegis لم يكن لديه الإذن قراءة وجهة النسخ الاحتياطي. تمت محاولة النسخ الاحتياطي %2$s. يمكن أن يحدث هذا الخطأ إذا قمت بنقل/إعادة تسمية وجهة النسخ الاحتياطي أو إذا قمت للتو باستعادة Aegis من نسخة احتياطية. الرجاء إعادة إعداد وجهة النسخ الإحتياطي.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+فشلت محاولة النسخ الاحتياطي الأخيرة للمخزون باستخدام %1$s لأن Aegis لم يكن لديه الإذن قراءة وجهة النسخ الاحتياطي. تمت محاولة النسخ الاحتياطي %2$s. يمكن أن يحدث هذا الخطأ إذا قمت بنقل/إعادة تسمية وجهة النسخ الاحتياطي أو إذا قمت للتو باستعادة Aegis من نسخة احتياطية. الرجاء إعادة إعداد وجهة النسخ الإحتياطي.    </string>
     <string name="backup_system_builtin">النسخ الاحتياطية التلقائية المضنة في Aegis</string>
     <string name="backup_system_android">نظام النسخ الاحتياطي السحابي للأندرويد</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        أحدث نسخة احتياطية قديمة (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        أحدث نسخة احتياطية قديمة (%s)
     </string>
-    <string name="backup_reminder_bar_message">        لا تُنسخ التغييرات احتياطيًا
+    <string name="backup_reminder_bar_message">
+        لا تُنسخ التغييرات احتياطيًا
     </string>
     <string name="backup_reminder_bar_dialog_title">لا تُنسخ التغييرات احتياطيًا</string>
-    <string name="backup_reminder_bar_dialog_summary">        لم يتم إجراء نسخ احتياطي للتغييرات الأخيرة التي تم إجراؤها على الخزنة حتى الآن. من المهم عمل نسخ احتياطية منتظمة لمنع فقدان الوصول إلى حساباتك. يرجى النظر في إعداد النسخ الاحتياطية التلقائية في قائمة الإعدادات.
+    <string name="backup_reminder_bar_dialog_summary">
+        لم يتم إجراء نسخ احتياطي للتغييرات الأخيرة التي تم إجراؤها على الخزنة حتى الآن. من المهم عمل نسخ احتياطية منتظمة لمنع فقدان الوصول إلى حساباتك. يرجى النظر في إعداد النسخ الاحتياطية التلقائية في قائمة الإعدادات.
     </string>
     <string name="backup_reminder_bar_dialog_accept">إعداد النسخ الاحتياطية</string>
     <string name="backup_plaintext_export_warning"><b>تم تصدير المخزن مؤخرا ك نص مجرّد</b></string>
     <string name="pref_show_plaintext_warning_hint">لا تُظهر هذا التحذير مجدداً</string>
     <string name="backup_plaintext_warning_explanation">يظهر هذا التحذير لأنك صدَّرت مؤخراً نسخة غير مُعمَّاة من المخزن. للحفاظ على أمان رموزك، نُوصي بحذف هذا الملف بمجرد أن لا تكون هناك حاجة إليه.</string>
     <string name="switch_camera">بدّل الكاميرا</string>
-    <string name="empty_list">لا توجد أكواد لعرضها. ابدأ بإضافة مدخلات بالنقر على علامة الزائد في أسفل الركن الأيسر</string>
-    <string name="empty_list_title">لم يتم العثور على مدخلات</string>
+    <string name="empty_list">لا توجد رموز لعرضها. ابدأ بإضافة مدخلات بالنقر على علامة الزائد في أسفل الركن الأيسر</string>
+    <string name="empty_list_title">لم يُعثر على مدخلات</string>
     <string name="empty_group_list">لا توجد مجموعات لعرضها. أضف مجموعات من خلال شاشة التعديل لأحد المدخلات</string>
-    <string name="empty_group_list_title">لم يتم العثور على أي مجموعات.</string>
+    <string name="empty_group_list_title">لم يُعثر على مجموعات</string>
     <string name="no_icon_packs">لم يتم استيراد أي حزم أيقونات بعد. انقر فوق علامة الزائد لاستيراد حزمة. نصيحة: جرب <a href="https://aegis-icons.github.io">aegis-icons</a>.</string>
     <string name="no_icon_packs_title">لا توجد حزم أيقونات</string>
     <string name="pick_icon">اختر أيقونة</string>
@@ -610,8 +616,8 @@
     <string name="pref_copy_behavior_single_tap">نقرة واحدة</string>
     <string name="pref_copy_behavior_double_tap">نقرتين</string>
     <string name="pref_account_name_position_hidden">مختفي</string>
-    <string name="pref_account_name_position_end">بجانب المصدر</string>
-    <string name="pref_account_name_position_below">أسفل المصدر</string>
+    <string name="pref_account_name_position_end">بجانب المُصدِّر</string>
+    <string name="pref_account_name_position_below">أسفل المُصدِّر</string>
     <plurals name="time_elapsed_seconds" tools:ignore="UnusedResources">
         <item quantity="zero">منذ %d ثواني</item>
         <item quantity="one">منذ ثانية</item>

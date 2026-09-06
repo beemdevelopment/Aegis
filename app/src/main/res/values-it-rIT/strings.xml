@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">Ogni due settimane</string>
     <string name="password_reminder_freq_monthly">Ogni mese</string>
     <string name="password_reminder_freq_quarterly">Ogni tre mesi</string>
+    <string name="enter_password_proton_message">Sembra che questo backup di Proton Authenticator sia cifrato. Inserisci la password qui sotto.</string>
     <string name="enter_password_2fas_message">Sembra che questo backup 2FAS sia cifrato. Inserisci la password qui sotto.</string>
     <string name="enter_password_authy_message">Sembra che i tuoi token di Authy siano crittografati. Chiudi Aegis, apri Authy e sblocca i token con la password. In alternativa Aegis può anche tentare di decifrare i tuoi token Authy, se inserisci la password qui sotto.</string>
     <string name="enter_password_aegis_title">Inserisci la password d\'importazione</string>
@@ -448,18 +449,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">Atteso il codice QR #%1$d, ma invece è stato scansionato #%2$d</string>
     <string name="backup_error_bar_message"><b>Backup della cassaforte fallito recentemente</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un recente tentativo di backup della cassaforte con %1$s non è riuscito perché si è verificato un errore. Il backup è stato tentato %2$s. Verificare le impostazioni di backup per assicurarsi che i backup possano essere completati correttamente.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Un recente tentativo di backup della cassaforte con %1$s non è riuscito perché si è verificato un errore. Il backup è stato tentato %2$s. Verificare le impostazioni di backup per assicurarsi che i backup possano essere completati correttamente.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un recente tentativo di backup della cassaforte con %1$s non è riuscito perché Aegis non aveva l\'autorizzazione di scrittura nella destinazione del backup. Il backup è stato tentato %2$s. Questo errore può verificarsi se è stato spostata o rinominata la destinazione del backup o se recentemente è stato ripristinato Aegis da un backup. Configurare nuovamente la destinazione del backup.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Un recente tentativo di backup della cassaforte con %1$s non è riuscito perché Aegis non aveva l\'autorizzazione di scrittura nella destinazione del backup. Il backup è stato tentato %2$s. Questo errore può verificarsi se è stato spostata o rinominata la destinazione del backup o se recentemente è stato ripristinato Aegis da un backup. Configurare nuovamente la destinazione del backup.
     </string>
     <string name="backup_system_builtin">i backup automatici integrati di Aegis</string>
     <string name="backup_system_android">il sistema di backup su cloud di Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        L\'ultimo backup è vecchio (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        L\'ultimo backup è vecchio (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Non è stato effettuato un backup delle modifiche
+    <string name="backup_reminder_bar_message">
+        Non è stato effettuato un backup delle modifiche
     </string>
     <string name="backup_reminder_bar_dialog_title">Le modifiche non vengono sottoposte a backup</string>
-    <string name="backup_reminder_bar_dialog_summary">        Le recenti modifiche alla cassaforte non sono ancora state sottoposte a backup. È importante eseguire backup regolari per evitare di perdere l\'accesso ai propri account. Si consiglia di impostare i backup automatici nel menu delle impostazioni.    </string>
+    <string name="backup_reminder_bar_dialog_summary">
+        Le recenti modifiche alla cassaforte non sono ancora state sottoposte a backup. È importante eseguire backup regolari per evitare di perdere l\'accesso ai propri account. Si consiglia di impostare i backup automatici nel menu delle impostazioni.    </string>
     <string name="backup_reminder_bar_dialog_accept">Configura i backup</string>
     <string name="backup_plaintext_export_warning"><b>La cassaforte è stata recentemente esportata in testo semplice</b></string>
     <string name="pref_show_plaintext_warning_hint">Non mostrare più questo avviso</string>
@@ -506,6 +512,8 @@
     <string name="dialog_wipe_entries_title">Cancella voci</string>
     <string name="dialog_wipe_entries_message">La tua cassaforte contiene già delle voci. Rimuovere queste voci prima di importare questo file?\n\n<b>In questo modo, perderai definitivamente l\'accesso alle voci esistenti nella cassaforte.</b></string>
     <string name="dialog_wipe_entries_checkbox">Cancella contenuto della cassaforte</string>
+    <string name="import_from_clipboard_title">Importa dagli appunti</string>
+    <string name="import_from_clipboard_message">Abbiamo trovato un uri otpauth valido nei tuoi appunti.\n\n<b>Nome</b>: %1$s\n<b>Emittente</b>: %2$s\n\nVuoi usarlo per precompilare questa voce?</string>
     <string name="panic_trigger_ignore_toast">Aegis ha ignorato il segnale di emergenza perché l\'opzione corrispondente è disabilitata</string>
     <string name="pref_panic_trigger_title">Elimina cassaforte al segnale di emergenza</string>
     <string name="pref_panic_trigger_summary">Elimina la cassaforte quando Ripple invia un segnale di emergenza</string>

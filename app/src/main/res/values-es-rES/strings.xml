@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">Cada dos semanas</string>
     <string name="password_reminder_freq_monthly">Cada mes</string>
     <string name="password_reminder_freq_quarterly">Cada tres meses</string>
+    <string name="enter_password_proton_message">Parece que esta copia de seguridad de Proton Authenticator está cifrada. Por favor, introduce la contraseña a continuación.</string>
     <string name="enter_password_2fas_message">Parece que esta copia de seguridad de 2FAS está cifrada. Introduzca la contraseña a continuación.</string>
     <string name="enter_password_authy_message">Parece que tus tokens de Authy están cifrados. Cierra Aegis, abre Authy y desbloquea los tokens con tu contraseña. Si lo prefieres Aegis también puede intentar descifrar tus tokens de Authy directamente, si escribes tu contraseña a continuación.</string>
     <string name="enter_password_aegis_title">Introduce la contraseña de importación</string>
@@ -380,7 +381,7 @@
     <string name="pref_haptic_feedback_title">Vibración</string>
     <string name="pref_highlight_entry_title">Resaltar códigos al pulsar</string>
     <string name="pref_highlight_entry_summary">Resalta temporalmente cada clave que toques sobre las demás para que sea más fácil de distinguir</string>
-    <string name="pref_groups_multiselect_title">Selección multiple de grupos</string>
+    <string name="pref_groups_multiselect_title">Selección múltiple de grupos</string>
     <string name="pref_groups_multiselect_summary">Permite seleccionar varios grupos a la vez</string>
     <string name="pref_minimize_on_copy_title">Minimizar al copiar</string>
     <string name="pref_minimize_on_copy_summary">Minimiza la aplicación tras copiar claves</string>
@@ -448,18 +449,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">Se esperaba el código QR número %1$d, pero parece que has escaneado el número %2$d</string>
     <string name="backup_error_bar_message"><b>La copia de seguridad de la bóveda ha fallado recientemente</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ha fallado una copia de la bóveda mediante %1$s realizada %2$s. Asegúrate de que la configuración esté bien para evitar problemas.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Ha fallado una copia de la bóveda mediante %1$s realizada %2$s. Asegúrate de que la configuración esté bien para evitar problemas.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ha fallado una copia de la bóveda mediante %1$s realizada %2$s porque Aegis no tenía permiso para escribir la carpeta elegida. Este error puede producirse si se ha movido o renombrado la carpeta o si has importado los ajustes de Aegis desde otro dispositivo. Vuelve a configurar la carpeta destino.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Ha fallado una copia de la bóveda mediante %1$s realizada %2$s porque Aegis no tenía permiso para escribir la carpeta elegida. Este error puede producirse si se ha movido o renombrado la carpeta o si has importado los ajustes de Aegis desde otro dispositivo. Vuelve a configurar la carpeta destino.
     </string>
     <string name="backup_system_builtin">Copias de seguridad automáticas de Aegis</string>
     <string name="backup_system_android">Sistema de copias de seguridad en la nube de Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        La última copia de seguridad está desactualizada (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        La última copia de seguridad está desactualizada (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Los cambios no están respaldados
+    <string name="backup_reminder_bar_message">
+        Los cambios no están respaldados
     </string>
     <string name="backup_reminder_bar_dialog_title">Los cambios no están respaldados</string>
-    <string name="backup_reminder_bar_dialog_summary">        Los últimos en la bóveda todavía no se han respaldado. Es importante hacer copias de seguridad programadas para evitar perder el acceso a tus cuentas. Te recomendamos encarecidamente activarlas en el menú de ajustes.
+    <string name="backup_reminder_bar_dialog_summary">
+        Los últimos en la bóveda todavía no se han respaldado. Es importante hacer copias de seguridad programadas para evitar perder el acceso a tus cuentas. Te recomendamos encarecidamente activarlas en el menú de ajustes.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Configurar copias de seguridad</string>
     <string name="backup_plaintext_export_warning"><b>La bóveda fue exportada recientemente en texto plano</b></string>

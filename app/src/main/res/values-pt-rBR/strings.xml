@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">Quinzenalmente</string>
     <string name="password_reminder_freq_monthly">Mensalmente</string>
     <string name="password_reminder_freq_quarterly">Trimestralmente</string>
+    <string name="enter_password_proton_message">Parece que este backup do Proton Authenticator está criptografado. Digite a senha abaixo.</string>
     <string name="enter_password_2fas_message">Parece que este backup do 2FAS está criptografado. Por favor, digite a senha abaixo.</string>
     <string name="enter_password_authy_message">Parece que seus tokens do Authy estão criptografados. Por favor, feche o Aegis, abra o Authy e desbloqueie os tokens com sua senha. Alternativamente, o Aegis também pode tentar descriptografar seus Authy tokens para você, se você digitar sua senha abaixo.</string>
     <string name="enter_password_aegis_title">Por favor, digite a senha de importação</string>
@@ -448,18 +449,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">Código QR esperava-se ser #%1$d, em vez disso, foi lido um #%2$d</string>
     <string name="backup_error_bar_message"><b>O backup do cofre falhou recentemente</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Uma tentativa recente de backup do cofre utilizando %1$s falhou porque ocorreu um erro. A tentativa foi em %2$s. Verifique as suas configurações de backup para garantir que os backups funcionem.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Uma tentativa recente de backup do cofre utilizando %1$s falhou porque ocorreu um erro. A tentativa foi em %2$s. Verifique as suas configurações de backup para garantir que os backups funcionem.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Uma tentativa recente de backup do cofre utilizando %1$s falhou pois o Aegis não tem permissão para gravar no local de backup. A tentativa foi feita em %2$s. Esse erro pode acontecer se você moveu/renomeou o local de backup ou se você restaurou o Aegis a partir de um backup. Por favor, reconfigure o local de backup.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Uma tentativa recente de backup do cofre utilizando %1$s falhou pois o Aegis não tem permissão para gravar no local de backup. A tentativa foi feita em %2$s. Esse erro pode acontecer se você moveu/renomeou o local de backup ou se você restaurou o Aegis a partir de um backup. Por favor, reconfigure o local de backup.
     </string>
     <string name="backup_system_builtin">Backups automáticos integrados do Aegis</string>
     <string name="backup_system_android">Sistema de backup em nuvem do Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        O backup mais recente está desatualizado (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        O backup mais recente está desatualizado (%s)
     </string>
-    <string name="backup_reminder_bar_message">        As alterações não foram salvas no backup
+    <string name="backup_reminder_bar_message">
+        As alterações não foram salvas no backup
     </string>
     <string name="backup_reminder_bar_dialog_title">As alterações não foram salvas no backup</string>
-    <string name="backup_reminder_bar_dialog_summary">        As alterações recentes no cofre ainda não foram salvas no backup. É importante ter backups regulares para evitar perder o acesso às suas contas. Por favor, considere a criação de backups automáticos no menu de configurações.
+    <string name="backup_reminder_bar_dialog_summary">
+        As alterações recentes no cofre ainda não foram salvas no backup. É importante ter backups regulares para evitar perder o acesso às suas contas. Por favor, considere a criação de backups automáticos no menu de configurações.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Configurar backups</string>
     <string name="backup_plaintext_export_warning"><b>O cofre foi exportado recentemente sem criptografia</b></string>

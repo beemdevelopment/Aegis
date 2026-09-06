@@ -187,7 +187,8 @@
     <string name="password_reminder_freq_biweekly">Tweewekelijks</string>
     <string name="password_reminder_freq_monthly">Maandelijks</string>
     <string name="password_reminder_freq_quarterly">Driemaandelijks</string>
-    <string name="enter_password_2fas_message">Het lijkt erop dat deze 2FAS back-up is versleuteld. Voer het wachtwoord hieronder in.</string>
+    <string name="enter_password_proton_message">Het lijkt erop dat deze Proton Authenticator-back-up is versleuteld. Voer het wachtwoord hieronder in.</string>
+    <string name="enter_password_2fas_message">Het lijkt erop dat deze 2FAS-back-up is versleuteld. Voer het wachtwoord hieronder in.</string>
     <string name="enter_password_authy_message">Het lijkt erop dat je Authy-tokens zijn versleuteld. Sluit Aegis, open Authy en ontgrendel de tokens met je wachtwoord. In plaats daarvan kan Aegis ook proberen om je Authy-tokens te decoderen als je hieronder je wachtwoord invult.</string>
     <string name="enter_password_aegis_title">Voer het importwachtwoord in</string>
     <string name="period_hint">Tijd (seconden)</string>
@@ -448,18 +449,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">QR-code #%1$d verwacht, in plaats daarvan #%2$d gescand</string>
     <string name="backup_error_bar_message"><b>Kluis back-up onlangs mislukt</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Een recente back-up van de kluis met %1$s mislukte omdat er iets misging. De back-uppoging was %2$s. Controleer de back-upinstellingen om zeker te zijn dat back-ups met succes kunnen worden voltooid.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Een recente back-up van de kluis met %1$s mislukte omdat er iets misging. De back-uppoging was %2$s. Controleer de back-upinstellingen om zeker te zijn dat back-ups met succes kunnen worden voltooid.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Een recente poging een reservekopie van de kluis te maken met %1$s is mislukt. Aegis heeft geen toestemming om te schrijven naar de back-uplocatie. De De back-uppoging was %2$s. Deze fout kan optreden als je de back-uplocatie hebt verplaatst/hernoemd of als je onlangs een Aegis hebt hersteld met een back-up. Configureer de back-uplocatie opnieuw.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Een recente poging een reservekopie van de kluis te maken met %1$s is mislukt. Aegis heeft geen toestemming om te schrijven naar de back-uplocatie. De De back-uppoging was %2$s. Deze fout kan optreden als je de back-uplocatie hebt verplaatst/hernoemd of als je onlangs een Aegis hebt hersteld met een back-up. Configureer de back-uplocatie opnieuw.
     </string>
     <string name="backup_system_builtin">het ingebouwde automatische back-ups van Aegis</string>
     <string name="backup_system_android">het cloud back-upsysteem van Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        De meest recente back-up is verouderd (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        De meest recente back-up is verouderd (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Geen back-up gemaakt van wijzigingen
+    <string name="backup_reminder_bar_message">
+        Geen back-up gemaakt van wijzigingen
     </string>
     <string name="backup_reminder_bar_dialog_title">Nog geen back-up van wijzigingen</string>
-    <string name="backup_reminder_bar_dialog_summary">        Er is nog geen back-up van recente wijzigingen in de kluis. Het is belangrijk om regelmatig back-ups te maken om de toegang tot accounts niet te verliezen. Overweeg om automatische back-ups in te stellen in het instellingenmenu.
+    <string name="backup_reminder_bar_dialog_summary">
+        Er is nog geen back-up van recente wijzigingen in de kluis. Het is belangrijk om regelmatig back-ups te maken om de toegang tot accounts niet te verliezen. Overweeg om automatische back-ups in te stellen in het instellingenmenu.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Back-ups instellen</string>
     <string name="backup_plaintext_export_warning"><b>De kluis is recent geëxporteerd in platte tekst</b></string>

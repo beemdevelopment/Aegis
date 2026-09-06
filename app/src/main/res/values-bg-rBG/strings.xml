@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">Веднъж на две седмици</string>
     <string name="password_reminder_freq_monthly">Веднъж месечно</string>
     <string name="password_reminder_freq_quarterly">Веднъж на тримесечие</string>
+    <string name="enter_password_proton_message">Изглежда това резервно копие на Proton Authenticator е шифровано. Въведете паролата.</string>
     <string name="enter_password_2fas_message">Изглежда това резервно копие на 2FAS е шифровано. Въведете паролата.</string>
     <string name="enter_password_authy_message">Изглежда, че вашите Authy токени са шифровани. Моля, затворете Aegis, отворете Authy и отключете токените с паролата си. Вместо това Aegis може също да се опита да дешифрира вашите Authy токени вместо вас, ако въведете паролата си по-долу.</string>
     <string name="enter_password_aegis_title">Въведете паролата за внасяне</string>
@@ -448,18 +449,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">Очакван е код за QR №%1$d, но е сканиран №%2$d</string>
     <string name="backup_error_bar_message"><b>Резервно копие на хранилището е било неуспешно</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Един от последните опити за резервно копие на хранилището чрез %1$s е неуспешен поради грешка. Това се е случило %2$s. Проверете настройките и се уверете, че резервни копия могат да бъдат създавани с тези настройки.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Един от последните опити за резервно копие на хранилището чрез %1$s е неуспешен поради грешка. Това се е случило %2$s. Проверете настройките и се уверете, че резервни копия могат да бъдат създавани с тези настройки.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Скорошен опит за резервно копие на хранилището с използване на %1$s е неуспешен, защото Aegis няма права за запис в местоназначението. Опитът е направен %2$s. Такава грешка може да възникне, ако сте преместили или преименували местоназначението или ако наскоро сте възстановили Aegis от резервно копие. Настройте местоназначението за резервно копие.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Скорошен опит за резервно копие на хранилището с използване на %1$s е неуспешен, защото Aegis няма права за запис в местоназначението. Опитът е направен %2$s. Такава грешка може да възникне, ако сте преместили или преименували местоназначението или ако наскоро сте възстановили Aegis от резервно копие. Настройте местоназначението за резервно копие.
     </string>
     <string name="backup_system_builtin">Вградените резервни копия на Aegis</string>
     <string name="backup_system_android">Облачните резервни копия на Андроид</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Последното резервно копие е остаряло (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Последното резервно копие е остаряло (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Липсва резервно копие на последните промени
+    <string name="backup_reminder_bar_message">
+        Липсва резервно копие на последните промени
     </string>
     <string name="backup_reminder_bar_dialog_title">Липсва резервно копие на последните промени</string>
-    <string name="backup_reminder_bar_dialog_summary">        Последните промени на хранилището не са запазени в резерено копие. Важно е често да правите резервни копия, за да не загубите достъп до профилите си. Помислете дали да не настроите автоматични резервни копия от настройките.
+    <string name="backup_reminder_bar_dialog_summary">
+        Последните промени на хранилището не са запазени в резерено копие. Важно е често да правите резервни копия, за да не загубите достъп до профилите си. Помислете дали да не настроите автоматични резервни копия от настройките.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Настройки на резервни копия</string>
     <string name="backup_plaintext_export_warning"><b>Хранилището е било изнесено в чист текст</b></string>

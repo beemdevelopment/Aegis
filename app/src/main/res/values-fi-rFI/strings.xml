@@ -440,18 +440,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">Odotettiin QR-koodia #%1$d, mutta skannattiin #%2$d sen sijaan</string>
     <string name="backup_error_bar_message"><b>Holvin varmuuskopiointi epäonnistui äskettäin</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Äskettäinen holvin varmuuskopiointiyritys %1$s käyttämällä epäonnistui, koska tapahtui virhe. Varmuuskopiointia yritettiin %2$s. Tarkista varmuuskopiointiasetukset varmistaaksesi, että varmuuskopiointi onnistuu.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Äskettäinen holvin varmuuskopiointiyritys %1$s käyttämällä epäonnistui, koska tapahtui virhe. Varmuuskopiointia yritettiin %2$s. Tarkista varmuuskopiointiasetukset varmistaaksesi, että varmuuskopiointi onnistuu.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Äskettäinen holvin varmuuskopiointiyritys %1$s käyttäen epäonnistui, koska Aegisilla ei ollut kirjoitusoikeutta varmuuskopiointikohteeseen. Varmuuskopiointia yritettiin %2$s. Tämä virhe voi ilmetä, jos olet siirtänyt tai nimennyt varmuuskopiointikohteen uudelleen tai jos olet hiljattain palauttanut Aegiksen varmuuskopiosta. Määritä varmuuskopiointikohde uudelleen.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Äskettäinen holvin varmuuskopiointiyritys %1$s käyttäen epäonnistui, koska Aegisilla ei ollut kirjoitusoikeutta varmuuskopiointikohteeseen. Varmuuskopiointia yritettiin %2$s. Tämä virhe voi ilmetä, jos olet siirtänyt tai nimennyt varmuuskopiointikohteen uudelleen tai jos olet hiljattain palauttanut Aegiksen varmuuskopiosta. Määritä varmuuskopiointikohde uudelleen.
     </string>
     <string name="backup_system_builtin">Aegisin sisäänrakennetut automaattiset varmuuskopiot</string>
     <string name="backup_system_android">Androidin pilvivarmuuskopiointijärjestelmä</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Viimeisin varmuuskopiointi on vanhentunut (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Viimeisin varmuuskopiointi on vanhentunut (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Muutoksia ei ole varmuuskopioitu
+    <string name="backup_reminder_bar_message">
+        Muutoksia ei ole varmuuskopioitu
     </string>
     <string name="backup_reminder_bar_dialog_title">Muutoksia ei ole varmuuskopioitu</string>
-    <string name="backup_reminder_bar_dialog_summary">        Viimeaikaisia holvin muutoksia ei ole vielä varmuuskopioitu. On tärkeää varmuuskopioida säännöllisesti, jotta et menetä pääsyä tileihisi. Harkitse automaattisten varmuuskopiointien määrittämistä asetuksissa.
+    <string name="backup_reminder_bar_dialog_summary">
+        Viimeaikaisia holvin muutoksia ei ole vielä varmuuskopioitu. On tärkeää varmuuskopioida säännöllisesti, jotta et menetä pääsyä tileihisi. Harkitse automaattisten varmuuskopiointien määrittämistä asetuksissa.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Määritä varmuuskopiot</string>
     <string name="backup_plaintext_export_warning"><b>Holvi vietiin äskettäin raakatekstinä</b></string>

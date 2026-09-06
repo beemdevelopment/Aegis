@@ -443,16 +443,21 @@
     <string name="google_qr_export_unrelated">Cod QR negăsit găsit. Încearcă să repornești scanerul.</string>
     <string name="google_qr_export_unexpected">Așteptat QR code #%1$d, dar scanat #%2$d totuși</string>
     <string name="backup_error_bar_message"><b>Copia de rezervă a seifului a eșuat recent</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">O tentativă recentă de backup de vault utilizând %1$s a eșuată deoarece un erori a întâmplat. Backup-ul a încercat %2$s. Va rog verificați setările backup-ului tale pentru a asigura că backup-urile pot completează cu succes.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">O tentativă recentă de backup de vault utilizând %1$s a eșuată deoarece Aegis nu are permisiunea a scrie la destinația backup-ului. Backup-ul a încercat %2$s. Acest erori poate întâmplă dacă aveți recent restaurat Aegis dintr-un backup. Vă rog reconfigurați destinația backup-ului.    </string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+O tentativă recentă de backup de vault utilizând %1$s a eșuată deoarece un erori a întâmplat. Backup-ul a încercat %2$s. Va rog verificați setările backup-ului tale pentru a asigura că backup-urile pot completează cu succes.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+O tentativă recentă de backup de vault utilizând %1$s a eșuată deoarece Aegis nu are permisiunea a scrie la destinația backup-ului. Backup-ul a încercat %2$s. Acest erori poate întâmplă dacă aveți recent restaurat Aegis dintr-un backup. Vă rog reconfigurați destinația backup-ului.    </string>
     <string name="backup_system_builtin">Copiile de siguranță încorporate în aplicație</string>
     <string name="backup_system_android">Sistemul de backup în cloud Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Ultima copie de rezervă este învechită (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Ultima copie de rezervă este învechită (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Modificările nu sunt salvate
+    <string name="backup_reminder_bar_message">
+        Modificările nu sunt salvate
     </string>
     <string name="backup_reminder_bar_dialog_title">Modificările nu sunt salvate</string>
-    <string name="backup_reminder_bar_dialog_summary">        Modificările recente în seif nu au fost încă salvate. Este important să faci copii de rezervă regulate pentru a preveni pierderea accesului la conturile tale. Te rugăm să luați în considerare configurarea copiilor de rezervă automate în meniul de setări.
+    <string name="backup_reminder_bar_dialog_summary">
+        Modificările recente în seif nu au fost încă salvate. Este important să faci copii de rezervă regulate pentru a preveni pierderea accesului la conturile tale. Te rugăm să luați în considerare configurarea copiilor de rezervă automate în meniul de setări.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Configurare backup-uri</string>
     <string name="backup_plaintext_export_warning"><b>Seiful a fost exportat recent în text simplu</b></string>

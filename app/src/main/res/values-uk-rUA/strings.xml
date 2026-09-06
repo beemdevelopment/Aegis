@@ -193,6 +193,7 @@
     <string name="password_reminder_freq_biweekly">Двічі на тиждень</string>
     <string name="password_reminder_freq_monthly">Щомісячно</string>
     <string name="password_reminder_freq_quarterly">Щокварталу</string>
+    <string name="enter_password_proton_message">Схоже, що ця резервна копія Proton Authenticator зашифрована. Введіть пароль нижче.</string>
     <string name="enter_password_2fas_message">Схоже, що ця резервна копія 2FAS зашифрована. Введіть пароль нижче.</string>
     <string name="enter_password_authy_message">Схоже, що ваші токени Authy зашифровані. Закрийте Aegis, відкрийте Authy та розблокуйте токени своїм паролем. Натомість Aegis також може спробувати розшифрувати ваші токени Authy, якщо ви введете свій пароль нижче.</string>
     <string name="enter_password_aegis_title">Будь ласка, введіть пароль для імпорту</string>
@@ -472,16 +473,21 @@
     </plurals>
     <string name="google_qr_export_unexpected">Очікувався QR-код #%1$d, але замість цього було відскановано #%2$d</string>
     <string name="backup_error_bar_message"><b>Нещодавно не вдалося створити резервну копію сховища</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Нещодавня спроба створення резервної копії сховища за допомогою %1$s не вдалася через помилку. Спроба створення резервної копії була здійснена %2$s. Перевірте налаштування резервного копіювання, щоб переконатися, що резервне копіювання може бути успішно завершене.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Нещодавня спроба створення резервної копії сховища за допомогою %1$s не вдалася, оскільки Aegis не мав дозволу на запис у місце призначення резервної копії. Спроба створення резервної копії була здійснена %2$s. Ця помилка може виникнути, якщо ви перемістили/перейменували місце призначення резервної копії або нещодавно відновили Aegis із резервної копії. Будь ласка, переналаштуйте місце призначення резервної копії    </string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+Нещодавня спроба створення резервної копії сховища за допомогою %1$s не вдалася через помилку. Спроба створення резервної копії була здійснена %2$s. Перевірте налаштування резервного копіювання, щоб переконатися, що резервне копіювання може бути успішно завершене.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+Нещодавня спроба створення резервної копії сховища за допомогою %1$s не вдалася, оскільки Aegis не мав дозволу на запис у місце призначення резервної копії. Спроба створення резервної копії була здійснена %2$s. Ця помилка може виникнути, якщо ви перемістили/перейменували місце призначення резервної копії або нещодавно відновили Aegis із резервної копії. Будь ласка, переналаштуйте місце призначення резервної копії    </string>
     <string name="backup_system_builtin">Вбудоване автоматичне резервне копіювання Aegis</string>
     <string name="backup_system_android">Система хмарного резервного копіювання Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Остання резервна копія застаріла (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Остання резервна копія застаріла (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Резервну копію змін не створено
+    <string name="backup_reminder_bar_message">
+        Резервну копію змін не створено
     </string>
     <string name="backup_reminder_bar_dialog_title">Зміни не збережені</string>
-    <string name="backup_reminder_bar_dialog_summary">Останні зміни в сховищі ще не були збережені. Важливо регулярно створювати резервні копії, щоб уникнути втрати доступу до своїх облікових записів. Рекомендуємо налаштувати автоматичне створення резервних копій в налаштуваннях    </string>
+    <string name="backup_reminder_bar_dialog_summary">
+Останні зміни в сховищі ще не були збережені. Важливо регулярно створювати резервні копії, щоб уникнути втрати доступу до своїх облікових записів. Рекомендуємо налаштувати автоматичне створення резервних копій в налаштуваннях    </string>
     <string name="backup_reminder_bar_dialog_accept">Налаштування резервних копій</string>
     <string name="backup_plaintext_export_warning"><b>Сховище нещодавно було експортовано у вигляді звичайного тексту</b></string>
     <string name="pref_show_plaintext_warning_hint">Не показувати це попередження в майбутньому</string>

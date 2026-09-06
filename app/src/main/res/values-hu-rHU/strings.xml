@@ -448,18 +448,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">A várt #%1$d QR-kód helyett ez lett beolvasva: #%2$d</string>
     <string name="backup_error_bar_message"><b>Egy széf mentése nemrég sikertelen volt</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Egy közelmúltbeli, az %1$s használó széfmentés sikertelen volt, mert hiba történt. A biztonsági mentés ekkor volt megpróbálva: %2$s. Ellenőrizze a biztonsági mentési beállításokat, hogy biztosítsa a mentések sikeres végrehajtását.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Egy közelmúltbeli, az %1$s használó széfmentés sikertelen volt, mert hiba történt. A biztonsági mentés ekkor volt megpróbálva: %2$s. Ellenőrizze a biztonsági mentési beállításokat, hogy biztosítsa a mentések sikeres végrehajtását.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Egy közelmúltbeli, az %1$s használó széfmentés sikertelen volt, mert az Aegisnek nem volt engedélye, hogy a mentési célra írjon. A biztonsági mentés ekkor volt megpróbálva: %2$s. Ez a hiba akkor történhet, ha áthelyezte/átnevezte a biztonsági mentés célját, vagy ha nemrég állította vissza mentésből az Aegist. Állítsa be újra a biztonsági mentés célját.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Egy közelmúltbeli, az %1$s használó széfmentés sikertelen volt, mert az Aegisnek nem volt engedélye, hogy a mentési célra írjon. A biztonsági mentés ekkor volt megpróbálva: %2$s. Ez a hiba akkor történhet, ha áthelyezte/átnevezte a biztonsági mentés célját, vagy ha nemrég állította vissza mentésből az Aegist. Állítsa be újra a biztonsági mentés célját.
     </string>
     <string name="backup_system_builtin">Aegis beépített biztonsági mentését</string>
     <string name="backup_system_android">Android felhős mentési rendszerét</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        A legfrissebb biztonsági mentés elavult (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        A legfrissebb biztonsági mentés elavult (%s)
     </string>
-    <string name="backup_reminder_bar_message">        A változásokról nincs biztonsági mentés
+    <string name="backup_reminder_bar_message">
+        A változásokról nincs biztonsági mentés
     </string>
     <string name="backup_reminder_bar_dialog_title">A változásokról nincs biztonsági mentés</string>
-    <string name="backup_reminder_bar_dialog_summary">        A széf friss változásairól még nincs biztonsági mentés. Fontos, hogy rendszeresen készítsen biztonsági mentéseket, hogy ne veszítse el a hozzáférést a fiókjaihoz. Fontolja meg, hogy beállítja az automatikus biztonsági mentést a beállítások menüben.
+    <string name="backup_reminder_bar_dialog_summary">
+        A széf friss változásairól még nincs biztonsági mentés. Fontos, hogy rendszeresen készítsen biztonsági mentéseket, hogy ne veszítse el a hozzáférést a fiókjaihoz. Fontolja meg, hogy beállítja az automatikus biztonsági mentést a beállítások menüben.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Biztonsági mentések beállítása</string>
     <string name="backup_plaintext_export_warning"><b>A széf nemrég egyszerű szövegként lett exportálva</b></string>

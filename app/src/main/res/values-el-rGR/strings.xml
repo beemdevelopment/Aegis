@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">Ανά δύο εβδομάδες</string>
     <string name="password_reminder_freq_monthly">Μηνιαία</string>
     <string name="password_reminder_freq_quarterly">Τριμηνιαία</string>
+    <string name="enter_password_proton_message">Φαίνεται ότι αυτό το αντίγραφο ασφαλείας επαληθευτή Proton είναι κρυπτογραφημένο. Παρακαλώ εισάγετε τον κωδικό πρόσβασης παρακάτω.</string>
     <string name="enter_password_2fas_message">Φαίνεται ότι αυτό το αντίγραφο ασφαλείας 2FAS είναι κρυπτογραφημένο. Παρακαλώ εισάγετε τον κωδικό πρόσβασης παρακάτω.</string>
     <string name="enter_password_authy_message">Φαίνεται ότι τα Authy αναγνωριστικά σας είναι κρυπτογραφημένα. Κλείστε το Aegis, ανοίξτε το Authy και ξεκλειδώστε τα αναγνωριστικά με τον κωδικό πρόσβασής σας. Αντ \'αυτού, ο Aegis μπορεί επίσης να προσπαθήσει να αποκρυπτογραφήσει τα διακριτικά Authy για εσάς, εάν εισαγάγετε τον κωδικό πρόσβασής σας παρακάτω.</string>
     <string name="enter_password_aegis_title">Παρακαλώ εισάγετε τον κωδικό εισαγωγής</string>
@@ -448,17 +449,22 @@
     </plurals>
     <string name="google_qr_export_unexpected">Αναμενόταν κωδικός QR #%1$d, αλλά σαρώθηκε #%2$d αντί αυτού</string>
     <string name="backup_error_bar_message"><b>Η δημιουργία αντιγράφων ασφαλείας κρύπτης απέτυχε πρόσφατα</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Μια πρόσφατη προσπάθεια δημιουργίας αντιγράφων ασφαλείας κρύπτης με χρήση %1$s απέτυχε επειδή παρουσιάστηκε σφάλμα. Έγινε προσπάθεια δημιουργίας αντιγράφων ασφαλείας %2$s. Παρακαλώ ελέγξτε τις ρυθμίσεις δημιουργίας αντιγράφων ασφαλείας για να βεβαιωθείτε ότι τα αντίγραφα ασφαλείας μπορούν να ολοκληρωθούν με επιτυχία.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Μια πρόσφατη προσπάθεια δημιουργίας αντιγράφων ασφαλείας κρύπτης με χρήση %1$s απέτυχε επειδή παρουσιάστηκε σφάλμα. Έγινε προσπάθεια δημιουργίας αντιγράφων ασφαλείας %2$s. Παρακαλώ ελέγξτε τις ρυθμίσεις δημιουργίας αντιγράφων ασφαλείας για να βεβαιωθείτε ότι τα αντίγραφα ασφαλείας μπορούν να ολοκληρωθούν με επιτυχία.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Μια πρόσφατη προσπάθεια δημιουργίας αντιγράφων ασφαλείας κρύπτης με χρήση %1$s απέτυχε επειδή το Aegis δεν είχε άδεια να εγγράψει στον προορισμό αντιγράφου ασφαλείας. Το αντίγραφο ασφαλείας επιχειρήθηκε %2$s. Αυτό το σφάλμα μπορεί να συμβεί αν μετακινήσατε / μετονομάσατε τον προορισμό αντιγράφου ασφαλείας ή αν αποκαταστήσατε πρόσφατα το Aegis από ένα αντίγραφο ασφαλείας. Παρακαλώ ρυθμίστε ξανά τον προορισμό του αντιγράφου ασφαλείας.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Μια πρόσφατη προσπάθεια δημιουργίας αντιγράφων ασφαλείας κρύπτης με χρήση %1$s απέτυχε επειδή το Aegis δεν είχε άδεια να εγγράψει στον προορισμό αντιγράφου ασφαλείας. Το αντίγραφο ασφαλείας επιχειρήθηκε %2$s. Αυτό το σφάλμα μπορεί να συμβεί αν μετακινήσατε / μετονομάσατε τον προορισμό αντιγράφου ασφαλείας ή αν αποκαταστήσατε πρόσφατα το Aegis από ένα αντίγραφο ασφαλείας. Παρακαλώ ρυθμίστε ξανά τον προορισμό του αντιγράφου ασφαλείας.
     </string>
     <string name="backup_system_builtin">Ενσωματωμένα αυτόματα αντίγραφα ασφαλείας του Aegis</string>
     <string name="backup_system_android">Σύστημα αντιγράφων ασφαλείας στο cloud του Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Το τελευταίο αντίγραφο ασφαλείας είναι παρωχημένο (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Το τελευταίο αντίγραφο ασφαλείας είναι παρωχημένο (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Δε λαμβάνονται αντίγραφα ασφαλείας των αλλαγών    </string>
+    <string name="backup_reminder_bar_message">
+        Δε λαμβάνονται αντίγραφα ασφαλείας των αλλαγών    </string>
     <string name="backup_reminder_bar_dialog_title">Δε δημιουργούνται αντίγραφα ασφαλείας των αλλαγών σας</string>
-    <string name="backup_reminder_bar_dialog_summary">        Οι πρόσφατες αλλαγές στην κρύπτη δεν έχουν δημιουργηθεί ακόμα αντίγραφα ασφαλείας.  Είναι σημαντικό να λαμβάνετε τακτικά αντίγραφα ασφαλείας για να αποτρέψετε την απώλεια πρόσβασης στους λογαριασμούς σας. Εξετάστε το ενδεχόμενο να δημιουργήσετε αυτόματα αντίγραφα ασφαλείας στο μενού ρυθμίσεων.
+    <string name="backup_reminder_bar_dialog_summary">
+        Οι πρόσφατες αλλαγές στην κρύπτη δεν έχουν δημιουργηθεί ακόμα αντίγραφα ασφαλείας.  Είναι σημαντικό να λαμβάνετε τακτικά αντίγραφα ασφαλείας για να αποτρέψετε την απώλεια πρόσβασης στους λογαριασμούς σας. Εξετάστε το ενδεχόμενο να δημιουργήσετε αυτόματα αντίγραφα ασφαλείας στο μενού ρυθμίσεων.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Ρύθμιση αντιγράφων ασφαλείας</string>
     <string name="backup_plaintext_export_warning"><b>Η κρύπτη εξήχθη πρόσφατα σε απλό κείμενο</b></string>

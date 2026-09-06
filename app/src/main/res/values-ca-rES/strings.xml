@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">Cada dues setmanes</string>
     <string name="password_reminder_freq_monthly">Mensualment</string>
     <string name="password_reminder_freq_quarterly">Trimestral</string>
+    <string name="enter_password_proton_message">Sembla que la còpia de seguretat de Proton Authenticator està xifrada. Introdueix la contrasenya.</string>
     <string name="enter_password_2fas_message">Sembla que la còpia dels A2F està xifrada. Introdueix la contrasenya.</string>
     <string name="enter_password_authy_message">Sembla que les fitxes d\'Authy estan xifrades. Si us plau, tanca Aegis, obre l\'Authy i desbloqueja les fitxes amb la contrasenya. Si no, Aegis port intentar desxifrar les fitxes d\'Authy per tu, si introdueixes la contrasenya a sota.</string>
     <string name="enter_password_aegis_title">Introdueix la contrasenya</string>
@@ -448,16 +449,21 @@
     </plurals>
     <string name="google_qr_export_unexpected">S\'esperava codi QR #%1$d, però s\'ha trobat #%2$d en el seu lloc</string>
     <string name="backup_error_bar_message"><b>Ha fallat la còpia de seguretat recentment</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Una còpia de seguretat de la caixa forta utilitzant %1$s ha fallat. La còpia s\'ha intentat %2$s. Si us plau, comprova la configuració de la còpia per a assegurar-te de que les còpies es poden fer correctament.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+Una còpia de seguretat de la caixa forta utilitzant %1$s ha fallat. La còpia s\'ha intentat %2$s. Si us plau, comprova la configuració de la còpia per a assegurar-te de que les còpies es poden fer correctament.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intent recent de còpia de seguretat de la caixa forta utilitzant %1$s ha fallat perquè l\'Aegis no té permís d\'escriptura en el destí de la còpia de seguretat. La còpia s\'ha intentat %2$s. Aquest error pot aparèixer si has mogut/reanomenat el destí de la còpia de seguretat o si has restaurat l\'Aegis recentment des d\'una còpia de seguretat. Si us plau torna a configurar el destí de la còpia de seguretat.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Un intent recent de còpia de seguretat de la caixa forta utilitzant %1$s ha fallat perquè l\'Aegis no té permís d\'escriptura en el destí de la còpia de seguretat. La còpia s\'ha intentat %2$s. Aquest error pot aparèixer si has mogut/reanomenat el destí de la còpia de seguretat o si has restaurat l\'Aegis recentment des d\'una còpia de seguretat. Si us plau torna a configurar el destí de la còpia de seguretat.
     </string>
     <string name="backup_system_builtin">Còpies de seguretat integrades a Aegis</string>
     <string name="backup_system_android">Còpia al núvol d\'Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">L\'última còpia de seguretat és molt antiga (%s)    </string>
-    <string name="backup_reminder_bar_message">No s\'han desat els canvis    </string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+L\'última còpia de seguretat és molt antiga (%s)    </string>
+    <string name="backup_reminder_bar_message">
+No s\'han desat els canvis    </string>
     <string name="backup_reminder_bar_dialog_title">No s\'ha fet còpia dels canvis</string>
-    <string name="backup_reminder_bar_dialog_summary">        No s\'ha fet una còpia de seguretat dels últims canvis. Es important fer còpies regularment per a evitar perdre l\'accés als teus comptes. Si us plau, considera activar les còpies automàtiques al menú de configuració.
+    <string name="backup_reminder_bar_dialog_summary">
+        No s\'ha fet una còpia de seguretat dels últims canvis. Es important fer còpies regularment per a evitar perdre l\'accés als teus comptes. Si us plau, considera activar les còpies automàtiques al menú de configuració.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Configurar còpies de seguretat</string>
     <string name="backup_plaintext_export_warning"><b>La caixa forta s\'ha exportat recentment en text sense format</b></string>

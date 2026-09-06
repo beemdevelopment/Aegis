@@ -184,6 +184,7 @@
     <string name="password_reminder_freq_biweekly">每两周</string>
     <string name="password_reminder_freq_monthly">每月</string>
     <string name="password_reminder_freq_quarterly">每季度</string>
+    <string name="enter_password_proton_message">此 Proton Authenticator 备份似乎已加密。请在下方输入密码。</string>
     <string name="enter_password_2fas_message">看起来此 2FAS 备份已加密。请在下方输入密码。</string>
     <string name="enter_password_authy_message">您的 Authy 令牌似乎已加密。请关闭 Aegis，打开 Authy，然后使用您的密码解锁令牌。另外，如果您在下面输入密码，Aegis 也可以尝试为您解密 Authy 令牌。</string>
     <string name="enter_password_aegis_title">请输入导入密码</string>
@@ -436,18 +437,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">预期二维码 #%1$d，但扫描了 #%2$d</string>
     <string name="backup_error_bar_message"><b>数据库最近备份失败</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        最近使用%1$s 备份密码库的尝试失败了，因为发生了错误。 备份尝试发生在 %2$s 前。请检查你的备份设备，确保备份可以成功完成。
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        最近使用%1$s 备份密码库的尝试失败了，因为发生了错误。 备份尝试发生在 %2$s 前。请检查你的备份设备，确保备份可以成功完成。
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        最近使用 %1$s 备份密码库的尝试失败了，因为 Aegis 没有写入备份目的地的权限。备份尝试发生在%2$s前。发生错误的原因可能是你 移动或重命名了备份目的地或者你近期从备份恢复了 Aegis。请重新配置备份目的地。
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        最近使用 %1$s 备份密码库的尝试失败了，因为 Aegis 没有写入备份目的地的权限。备份尝试发生在%2$s前。发生错误的原因可能是你 移动或重命名了备份目的地或者你近期从备份恢复了 Aegis。请重新配置备份目的地。
     </string>
     <string name="backup_system_builtin">Aegis 内置的自动备份</string>
     <string name="backup_system_android">Android 的云备份系统</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新备份已过时 (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        最新备份已过时 (%s)
     </string>
-    <string name="backup_reminder_bar_message">        未备份更改
+    <string name="backup_reminder_bar_message">
+        未备份更改
     </string>
     <string name="backup_reminder_bar_dialog_title">变更尚未备份</string>
-    <string name="backup_reminder_bar_dialog_summary">最近对数据库的变更尚未备份。应定期备份以防丢失访问权限。建议您到设置菜单中设置自动备份。    </string>
+    <string name="backup_reminder_bar_dialog_summary">
+最近对数据库的变更尚未备份。应定期备份以防丢失访问权限。建议您到设置菜单中设置自动备份。    </string>
     <string name="backup_reminder_bar_dialog_accept">设置备份</string>
     <string name="backup_plaintext_export_warning"><b>保险库最近导出为纯文本</b></string>
     <string name="pref_show_plaintext_warning_hint">不再显示此警告</string>

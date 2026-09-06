@@ -454,12 +454,15 @@
     </string>
     <string name="backup_system_builtin">Aegis dahili otomatik yedekleri</string>
     <string name="backup_system_android">Android\'in bulut yedekleme sistemi</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Son yedek güncel değil (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Son yedek güncel değil (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Değişiklikler yedeklenmedi
+    <string name="backup_reminder_bar_message">
+        Değişiklikler yedeklenmedi
     </string>
     <string name="backup_reminder_bar_dialog_title">Değişiklikler yedeklenmedi</string>
-    <string name="backup_reminder_bar_dialog_summary">        Kasadaki son değişiklikler henüz yedeklenmedi. Hesaplarınıza erişimi kaybetmemek için düzenli olarak yedek almanız önemlidir. Lütfen ayarlar menüsünde otomatik yedeklemeleri ayarlamayı dikkate alın.
+    <string name="backup_reminder_bar_dialog_summary">
+        Kasadaki son değişiklikler henüz yedeklenmedi. Hesaplarınıza erişimi kaybetmemek için düzenli olarak yedek almanız önemlidir. Lütfen ayarlar menüsünde otomatik yedeklemeleri ayarlamayı dikkate alın.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Yedeklemeleri ayarla</string>
     <string name="backup_plaintext_export_warning"><b>Kasa yakın zamanda düz metin olarak dışa aktarıldı</b></string>
@@ -507,6 +510,7 @@
     <string name="dialog_wipe_entries_title">Girdileri sil</string>
     <string name="dialog_wipe_entries_message">Kasanızda zaten girdiler bulunmaktadır. İçe aktarmadan önce bu girdileri silmek istediğinize emin misiniz?\n\n<b>Deponun içinde bulunan girdilere erişiminizi sonsuza dek kaybedeceksiniz.</b></string>
     <string name="dialog_wipe_entries_checkbox">Kasa içeriklerini temizle</string>
+    <string name="import_from_clipboard_title">Panodan içe aktar</string>
     <string name="panic_trigger_ignore_toast">Aegis panik tetiği algıladı, ancak bu ayar devre dışı, göz ardı ediliyor</string>
     <string name="pref_panic_trigger_title">Panik tetiklendiğinde kasayı sil</string>
     <string name="pref_panic_trigger_summary">Ripple\'dan panik tetiklenmesi alınca kasayı sil</string>

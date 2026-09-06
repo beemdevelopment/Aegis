@@ -402,12 +402,15 @@
     <string name="email">E-post</string>
     <string name="backup_system_builtin">Aegis\' innebygde automatiske sikkerhetskopier</string>
     <string name="backup_system_android">System for Android-sikkerhetskopiering i skyen</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Siste sikkerhetskopi er utdatert (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Siste sikkerhetskopi er utdatert (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Endringer er ikke sikkerhetskopiert
+    <string name="backup_reminder_bar_message">
+        Endringer er ikke sikkerhetskopiert
     </string>
     <string name="backup_reminder_bar_dialog_title">Endringer er ikke sikkerhetskopiert</string>
-    <string name="backup_reminder_bar_dialog_summary">        Nylige endringer i hvelvet er ikke sikkerhetskopiert enda. Det er viktig å sikkerhetskopiere regelmessig for å unngå at du mister tilgang til kontoene dine. Vennligst vurder å sette opp automatisk sikkerhetskopiering i innstillingene.
+    <string name="backup_reminder_bar_dialog_summary">
+        Nylige endringer i hvelvet er ikke sikkerhetskopiert enda. Det er viktig å sikkerhetskopiere regelmessig for å unngå at du mister tilgang til kontoene dine. Vennligst vurder å sette opp automatisk sikkerhetskopiering i innstillingene.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Sett opp sikkerhetskopier</string>
     <string name="backup_plaintext_export_warning"><b>Hvelvet ble nylig eksportert i klartekst</b></string>

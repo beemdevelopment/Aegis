@@ -72,7 +72,7 @@
     <string name="pref_backups_location_title">Varukoopia asukoht</string>
     <string name="pref_backups_location_summary">Varukoopiad salvestuvad siin:</string>
     <string name="pref_backup_location_summary">Varukoopia salvestub siin:</string>
-    <string name="pref_backups_trigger_title">Käivita kohe varundus</string>
+    <string name="pref_backups_trigger_title">Käivita varundus kohe</string>
     <string name="pref_backups_trigger_summary">Tee varundus käsitsi</string>
     <string name="pref_backups_versions_title">Säilitatavate versioonide arv</string>
     <string name="pref_backups_versions_infinite">\u221E</string>
@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">kaks korda nädalas</string>
     <string name="password_reminder_freq_monthly">kord kuus</string>
     <string name="password_reminder_freq_quarterly">kord kvartalis</string>
+    <string name="enter_password_proton_message">Tundub, et Proton Authenticatori rakenduse varukoopia on krüptitud. Palun sisesta alljärgnevalt salasõna.</string>
     <string name="enter_password_2fas_message">Tundub, et 2FAS rakenduse varukoopia on krüptitud. Palun sisesta alljärgnevalt salasõna.</string>
     <string name="enter_password_authy_message">Tundub, et Authy rakenduse kirjed on krüptitud. Palun sulge Aegis, ava Authy ning eemalda kirjete lukustus oma salasõnaga. Võid ka proovida, kas Aegis saab dekrüptimisega hakkama. Selleks sisesta alljärgnevalt vajalik salasõna.</string>
     <string name="enter_password_aegis_title">Palun sisesta importimise salasõna</string>
@@ -307,8 +308,8 @@
         <item quantity="other">Importisin %d kirjet</item>
     </plurals>
     <plurals name="entries_shown">
-        <item quantity="one">Näitan %d kirjet</item>
-        <item quantity="other">Näitan %d kirjet</item>
+        <item quantity="one">Kuvatud kirjeid: %d</item>
+        <item quantity="other">Kuvatud kirjeid: %d</item>
     </plurals>
     <string name="intro_import_error_title">Andmehoidla importimisel tekkis viga</string>
     <string name="import_error_title">Importimisel tekkis üks või enam viga</string>
@@ -448,14 +449,19 @@
     </plurals>
     <string name="google_qr_export_unexpected">Eeldasin näga QR-koodi #%1$d, aga selle asemel skaneerisin #%2$d</string>
     <string name="backup_error_bar_message"><b>Andmehoidla hiljutine varundamine ei õnnestunud</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Vea tekkimise tõttu hiljutine andmehoidla varundus %1$s abil ei õnnestunud. Varukoopia loomise katse toimus %2$s. Selleks, et varundus toimiks korrektselt, palun kontrolli varunduse seadistusi.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Kuna Aegisel polnud õigust kirjutada varunduse kausta, siis hiljutine andmehoidla varundus %1$s abil ei õnnestunud. Varukoopia loomise katse toimus %2$s. Selline viga võib tekkida, kui sa oled hiljuti muutnud varukoopia kausta nime või ta teisaldanud, samuti ka kui oled hiljuti Aegise varukoopiast taastanud. Palun seadista varukoopia kaust uuesti.    </string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+Vea tekkimise tõttu hiljutine andmehoidla varundus %1$s abil ei õnnestunud. Varukoopia loomise katse toimus %2$s. Selleks, et varundus toimiks korrektselt, palun kontrolli varunduse seadistusi.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+Kuna Aegisel polnud õigust kirjutada varunduse kausta, siis hiljutine andmehoidla varundus %1$s abil ei õnnestunud. Varukoopia loomise katse toimus %2$s. Selline viga võib tekkida, kui sa oled hiljuti muutnud varukoopia kausta nime või ta teisaldanud, samuti ka kui oled hiljuti Aegise varukoopiast taastanud. Palun seadista varukoopia kaust uuesti.    </string>
     <string name="backup_system_builtin">Aegise sisseehitatud automaatne varundus</string>
     <string name="backup_system_android">Androidi pilvevarundus</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">Viimane varukoopia on aegunud (%s)    </string>
-    <string name="backup_reminder_bar_message">Muudatused on varundamata    </string>
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+Viimane varukoopia on aegunud (%s)    </string>
+    <string name="backup_reminder_bar_message">
+Muudatused on varundamata    </string>
     <string name="backup_reminder_bar_dialog_title">Muudatused on varundamata</string>
-    <string name="backup_reminder_bar_dialog_summary">Andmehoidla viimased muudatused on veel varundamata. Vältimaks, et kaotad ligipääsu oma kasutajakontodele, on oluline, et teed sagedasti varukoopiaid. Palun kaalu automaatse varunduse kasutuselevõtmist seadistuste menüüst.    </string>
+    <string name="backup_reminder_bar_dialog_summary">
+Andmehoidla viimased muudatused on veel varundamata. Vältimaks, et kaotad ligipääsu oma kasutajakontodele, on oluline, et teed sagedasti varukoopiaid. Palun kaalu automaatse varunduse kasutuselevõtmist seadistuste menüüst.    </string>
     <string name="backup_reminder_bar_dialog_accept">Seadista varundamine</string>
     <string name="backup_plaintext_export_warning"><b>Andmehoidla on hiljuti eksporditud lihtteksti vormingus</b></string>
     <string name="pref_show_plaintext_warning_hint">Ära näita seda hoiatust uuesti</string>

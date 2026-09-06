@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">Twawykliks</string>
     <string name="password_reminder_freq_monthly">Moanliks</string>
     <string name="password_reminder_freq_quarterly">Elk fearnsjier</string>
+    <string name="enter_password_proton_message">It liket derop dat dizze Proton Authenticator-reservekopy fersifere is. Fier it wachtwurd hjirûnder yn.</string>
     <string name="enter_password_2fas_message">It liket derop dat dizze 2FAS-reservekopy fersifere is. Fier it wachtwurd hjirûnder yn.</string>
     <string name="enter_password_authy_message">It liket derop dat jo Authy-tokens fersifere binne. Slút Aegis, iepenje Authy en ûntskoattelje de tokens mei jo wachtwurd. Yn stee dêrfan kin Aegis ek probearje om jo Authy-tokens te dekodearjen as jo hjirûnder jo wachtwurd ynfolje.</string>
     <string name="enter_password_aegis_title">Fier it ymportwachtwurd yn</string>
@@ -448,18 +449,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">QR-koade #%1$d ferwachte, yn stee dêrfan #%2$d scand</string>
     <string name="backup_error_bar_message"><b>Klûsreservekopy koartlyn mislearre</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        In resinte reservekopy fan de klûs mei %1$s mislearre, omdat der wat misgien is. De reservekopybesykjen wie op %2$s. Kontrolearje de resevekopy-ynstellingen om wis te wêzen dat reservekopyen mei sukses foltôge wurde kinne.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        In resinte reservekopy fan de klûs mei %1$s mislearre, omdat der wat misgien is. De reservekopybesykjen wie op %2$s. Kontrolearje de resevekopy-ynstellingen om wis te wêzen dat reservekopyen mei sukses foltôge wurde kinne.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        In resint besykjen in reservekopy fan de klûs te meitsjen mei %1$s is mislearre. Aegis hat gjin tastimming om te skriuwen nei de reservekopylokaasje. De reservekopy is %2$s probearre. Dizze flater kin barre as jo de reservekopylokaasje ferpleatst/omneamd hawwe of as jo koartlyn in Aegis-reservekopy wersteld hawwe. Konfigurearje de reservekopylokaasje opnij.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        In resint besykjen in reservekopy fan de klûs te meitsjen mei %1$s is mislearre. Aegis hat gjin tastimming om te skriuwen nei de reservekopylokaasje. De reservekopy is %2$s probearre. Dizze flater kin barre as jo de reservekopylokaasje ferpleatst/omneamd hawwe of as jo koartlyn in Aegis-reservekopy wersteld hawwe. Konfigurearje de reservekopylokaasje opnij.
     </string>
     <string name="backup_system_builtin">it ynboude automatyske reservekopyen fan Aegis</string>
     <string name="backup_system_android">it cloudreservekopysysteem fan Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        De meast resinte reservekopy is ferâldere (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        De meast resinte reservekopy is ferâldere (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Gjin reservekopy makke fan wizigingen
+    <string name="backup_reminder_bar_message">
+        Gjin reservekopy makke fan wizigingen
     </string>
     <string name="backup_reminder_bar_dialog_title">Noch gjin reservekopy makke fan wizigingen</string>
-    <string name="backup_reminder_bar_dialog_summary">        Der is noch gjin reservekopy fan resinte wizigingen yn de klûs. It is wichtich om regelmjittich reservekopyen te meitsjen om de tagong ta accounts net te ferliezen. Tink ris oan om automatyske reservekopyen yn te stellen yn it ynstellingenmenu.
+    <string name="backup_reminder_bar_dialog_summary">
+        Der is noch gjin reservekopy fan resinte wizigingen yn de klûs. It is wichtich om regelmjittich reservekopyen te meitsjen om de tagong ta accounts net te ferliezen. Tink ris oan om automatyske reservekopyen yn te stellen yn it ynstellingenmenu.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Reservekopyen ynstelle</string>
     <string name="backup_plaintext_export_warning"><b>De klûs is resint eksportearre yn platte tekst</b></string>

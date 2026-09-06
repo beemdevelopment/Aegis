@@ -371,12 +371,15 @@
     <string name="backup_error_bar_message"><b>保管庫のバックアップが失敗しました</b></string>
     <string name="backup_system_builtin">Aegisの内蔵自動バックアップ</string>
     <string name="backup_system_android">Androidのクラウドバックアップシステム</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新のバックアップが古くなっています (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        最新のバックアップが古くなっています (%s)
     </string>
-    <string name="backup_reminder_bar_message">        変更がバックアップされていません
+    <string name="backup_reminder_bar_message">
+        変更がバックアップされていません
     </string>
     <string name="backup_reminder_bar_dialog_title">変更がバックアップされていません</string>
-    <string name="backup_reminder_bar_dialog_summary">最近行われた保管庫への変更がバックアップされていません。アカウントへのアクセス権を失わないためには、定期的なバックアップが重要です。設定メニューから自動バックアップを設定することを検討してください。
+    <string name="backup_reminder_bar_dialog_summary">
+最近行われた保管庫への変更がバックアップされていません。アカウントへのアクセス権を失わないためには、定期的なバックアップが重要です。設定メニューから自動バックアップを設定することを検討してください。
     </string>
     <string name="backup_reminder_bar_dialog_accept">バックアップを設定する</string>
     <string name="backup_plaintext_export_warning"><b>保管庫は最近プレーンテキストでエクスポートされました</b></string>

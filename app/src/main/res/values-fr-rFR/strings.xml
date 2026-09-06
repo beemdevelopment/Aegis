@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">Toutes les deux semaines</string>
     <string name="password_reminder_freq_monthly">Tous les mois</string>
     <string name="password_reminder_freq_quarterly">Tous les trois mois</string>
+    <string name="enter_password_proton_message">Il semble que cette sauvegarde Proton Authenticator soit chiffrée. Veuillez saisir le mot de passe ci-dessous.</string>
     <string name="enter_password_2fas_message">Il semble que cette sauvegarde 2FAS soit chiffrée. Veuillez saisir le mot de passe ci-dessous.</string>
     <string name="enter_password_authy_message">Il semble que vos jetons Authy soient chiffrés. Veuillez fermer Aegis, ouvrir Authy et déverrouiller les jetons avec votre mot de passe. Au lieu de cela, Aegis peut également tenter de déchiffrer vos jetons Authy pour vous si vous entrez votre mot de passe ci-dessous.</string>
     <string name="enter_password_aegis_title">Veuillez saisir le mot de passe pour l\'importation</string>
@@ -448,18 +449,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">Code QR n°%1$d attendu, mais n°%2$d scanné à la place</string>
     <string name="backup_error_bar_message"><b>La sauvegarde du coffre-fort a échoué récemment</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Une tentative récente de sauvegarde du coffre-fort en utilisant %1$s a échoué car une erreur est survenue. La sauvegarde a été tentée %2$s. Veuillez vérifier vos paramètres de sauvegarde pour vous assurer que les sauvegardes peuvent se terminer avec succès.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Une tentative récente de sauvegarde du coffre-fort en utilisant %1$s a échoué car une erreur est survenue. La sauvegarde a été tentée %2$s. Veuillez vérifier vos paramètres de sauvegarde pour vous assurer que les sauvegardes peuvent se terminer avec succès.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Une tentative récente de sauvegarde du coffre-fort en utilisant %1$s a échoué car Aegis n\'avait pas la permission d\'écrire dans la destination de la sauvegarde. La sauvegarde a été tentée %2$s. Cette erreur peut se produire si vous avez déplacé/renommé la destination de la sauvegarde ou si vous avez récemment restauré Aegis depuis une sauvegarde. Veuillez reconfigurer la destination de la sauvegarde.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Une tentative récente de sauvegarde du coffre-fort en utilisant %1$s a échoué car Aegis n\'avait pas la permission d\'écrire dans la destination de la sauvegarde. La sauvegarde a été tentée %2$s. Cette erreur peut se produire si vous avez déplacé/renommé la destination de la sauvegarde ou si vous avez récemment restauré Aegis depuis une sauvegarde. Veuillez reconfigurer la destination de la sauvegarde.
     </string>
     <string name="backup_system_builtin">Sauvegardes automatiques intégrées dans Aegis</string>
     <string name="backup_system_android">Système de sauvegarde cloud d\'Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        La dernière sauvegarde est obsolète (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        La dernière sauvegarde est obsolète (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Les modifications ne sont pas sauvegardées
+    <string name="backup_reminder_bar_message">
+        Les modifications ne sont pas sauvegardées
     </string>
     <string name="backup_reminder_bar_dialog_title">Les modifications ne sont pas sauvegardées</string>
-    <string name="backup_reminder_bar_dialog_summary">        Les changements récents dans le coffre-fort n\'ont pas encore été sauvegardés. Il est important de réaliser des sauvegardes régulières pour éviter de perdre l\'accès à vos comptes. Veuillez envisager de configurer des sauvegardes automatiques dans le menu Paramètres.
+    <string name="backup_reminder_bar_dialog_summary">
+        Les changements récents dans le coffre-fort n\'ont pas encore été sauvegardés. Il est important de réaliser des sauvegardes régulières pour éviter de perdre l\'accès à vos comptes. Veuillez envisager de configurer des sauvegardes automatiques dans le menu Paramètres.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Configurer les sauvegardes</string>
     <string name="backup_plaintext_export_warning"><b>Le coffre-fort a récemment été exporté en texte brut</b></string>

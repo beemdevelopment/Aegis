@@ -448,18 +448,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">Esperábase o código QR nº %1$d, pero escaneouse o nº %2$d</string>
     <string name="backup_error_bar_message"><b>A copia de seguridade do almacén fallou recentemente</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un intento de facer unha copia de seguridade do almacén usando %1$s fallou debido a algún erro. A copia de seguridade intentouse %2$s. Comproba os axustes da copia de seguridade para asegurarte de que poidan completar correctamente.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Un intento de facer unha copia de seguridade do almacén usando %1$s fallou debido a algún erro. A copia de seguridade intentouse %2$s. Comproba os axustes da copia de seguridade para asegurarte de que poidan completar correctamente.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Un recente intento de copia de seguridade utilizando %1$s fallou porque Aegis non tiña permiso de escritura no destino da copia de seguridade. A copia de seguridade intentouse %2$s. Este erro pode ocorrer se moviches ou renomeaches o destino ou se fai pouco que recuperaches Aegis desde unha copia de seguridade. Volve a configurar o destino da copia de seguridade.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Un recente intento de copia de seguridade utilizando %1$s fallou porque Aegis non tiña permiso de escritura no destino da copia de seguridade. A copia de seguridade intentouse %2$s. Este erro pode ocorrer se moviches ou renomeaches o destino ou se fai pouco que recuperaches Aegis desde unha copia de seguridade. Volve a configurar o destino da copia de seguridade.
     </string>
     <string name="backup_system_builtin">Copias de seguridade automáticas de Aegis</string>
     <string name="backup_system_android">Copias de seguridade na nube de Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        A última copia de seguridade está desactualizada (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        A última copia de seguridade está desactualizada (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Os cambios non están gardados na copia de seguridade
+    <string name="backup_reminder_bar_message">
+        Os cambios non están gardados na copia de seguridade
     </string>
     <string name="backup_reminder_bar_dialog_title">Os cambios non están gardados na copia de seguridade</string>
-    <string name="backup_reminder_bar_dialog_summary">        Aínda non se fixo copia de seguridade dos últimos cambios feitos no almacén. É importante facer copias regularmente para non perderes o acceso ás túas contas. Considera configurar as copias de seguridade automáticas no menú de axustes.
+    <string name="backup_reminder_bar_dialog_summary">
+        Aínda non se fixo copia de seguridade dos últimos cambios feitos no almacén. É importante facer copias regularmente para non perderes o acceso ás túas contas. Considera configurar as copias de seguridade automáticas no menú de axustes.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Configurar copias</string>
     <string name="backup_plaintext_export_warning"><b>O almacén exportouse recentemente como texto plano</b></string>

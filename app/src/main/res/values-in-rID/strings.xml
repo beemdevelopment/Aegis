@@ -440,12 +440,15 @@
     <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Upaya pencadangan brankas terkini menggunakan %1$s gagal karena Aegis tidak memiliki izin untuk menulis ke tujuan pencadangan. Pencadangan telah dilakukan dengan menggunakan %2$s. Kesalahan ini dapat terjadi jika Anda memindahkan/mengganti nama tujuan pencadangan atau jika Anda baru saja memulihkan Aegis dari pencadangan. Harap konfigurasikan ulang tujuan pencadangan.</string>
     <string name="backup_system_builtin">Pencadangan otomatis bawaan Aegis</string>
     <string name="backup_system_android">Sistem pencadangan awan Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Backup terakhir sudah kedaluwarsa (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Backup terakhir sudah kedaluwarsa (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Perubahan tidak di backup
+    <string name="backup_reminder_bar_message">
+        Perubahan tidak di backup
     </string>
     <string name="backup_reminder_bar_dialog_title">Perubahan tidak di backup</string>
-    <string name="backup_reminder_bar_dialog_summary">        Perubahan terbaru pada brankas belum dicadangkan. Penting untuk melakukan pencadangan secara teratur untuk mencegah kehilangan akses ke akun Anda. Pertimbangkan untuk menyiapkan pencadangan otomatis di menu pengaturan.
+    <string name="backup_reminder_bar_dialog_summary">
+        Perubahan terbaru pada brankas belum dicadangkan. Penting untuk melakukan pencadangan secara teratur untuk mencegah kehilangan akses ke akun Anda. Pertimbangkan untuk menyiapkan pencadangan otomatis di menu pengaturan.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Menyiapkan cadangan</string>
     <string name="backup_plaintext_export_warning"><b>Brankas baru-baru ini diekspor dalam teks biasa</b></string>

@@ -363,6 +363,17 @@
     <string name="preference_reset_usage_count_dialog">Ziur zaude elementu guztien erabilera kopurua 0ra berrezartzeaz?</string>
     <string name="note" comment="Users can add a note to an entry">Oharra</string>
     <string name="clear">Garbitu</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Bikoiztutako sarrera</string>
+    <string name="dialog_duplicate_entry_message">Sarrera honek beste sarrera bat edo gehiagoren izen eta jaulkitzaile berbera ditu. Zer egin nahi duzu?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Gainidatzi existitzen diren sarrera(k)</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Ordezkatu existitzen diren sarrerak berriarekin. Ekintza hau ezin da desegin</string>
+    <string name="dialog_duplicate_entry_suffix_title">Gehitu atzizkia</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Gehitu atzizki bat sarrera berri honi. Izen berria hauxe izango da: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Ezeztatu gordetzea</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Sarrera editazen uzten dizu berriz gordetzen saiatu aurretik</string>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Baieztatu ezabapena</string>
+    <string name="pref_haptic_feedback_summary">Bibratu gailua zure kodeak freskatzen daudenean</string>
+    <string name="pref_haptic_feedback_title">Erantzun haptikoa</string>
     <string name="pref_highlight_entry_title">Nabarmendu tokenak ukitzean</string>
     <string name="pref_highlight_entry_summary">Egin elkarrengandik errazago bereizten diren tokenak, sakatzen dituzunean aldi baterako nabarmenduz</string>
     <string name="pref_groups_multiselect_title">Talde bat baino gehiago aukeratu</string>
@@ -433,15 +444,20 @@
     </plurals>
     <string name="google_qr_export_unexpected">#%1$d QR kodea espero zen baina #%2$d eskaneatu da</string>
     <string name="backup_error_bar_message"><b>Biltegiaren segurtasun-kopiak akatsa eman du berriki</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%1$s erabiliz egindako biltegiaren segurtasun kopiak huts egin du. Saiakera noiz egin den: %2$s. Ziurtatu segurtasun kopien ezarpenak ondo daudela hauek ondo egin daitezen.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">%1$s erabiliz egin den segurtasun-kopia baten saiakerak huts egin du Aegisek ez baitu baimenik helburuan ezer idazteko. Segurtasun kopiaren saiakera %2$s izan da. Errore hau kopia mugitu/berrizendatu egin duzulako izan daiteke edo Aegis segurtasun-kopia batetik berrezarri duzulako. Konfiguratu berriz zure kopien helburu karpeta.    </string>
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+%1$s erabiliz egindako biltegiaren segurtasun kopiak huts egin du. Saiakera noiz egin den: %2$s. Ziurtatu segurtasun kopien ezarpenak ondo daudela hauek ondo egin daitezen.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+%1$s erabiliz egin den segurtasun-kopia baten saiakerak huts egin du Aegisek ez baitu baimenik helburuan ezer idazteko. Segurtasun kopiaren saiakera %2$s izan da. Errore hau kopia mugitu/berrizendatu egin duzulako izan daiteke edo Aegis segurtasun-kopia batetik berrezarri duzulako. Konfiguratu berriz zure kopien helburu karpeta.    </string>
     <string name="backup_system_builtin">Aegisek egindako segurtasun kopia automatikoak</string>
     <string name="backup_system_android">Androidek lainoan egidako segurtasun kopiak</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">Azken segurtasun kopia zaharregia da (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+Azken segurtasun kopia zaharregia da (%s)
     </string>
-    <string name="backup_reminder_bar_message">Aldaketen segurtasun kopiak ez dira egiten    </string>
+    <string name="backup_reminder_bar_message">
+Aldaketen segurtasun kopiak ez dira egiten    </string>
     <string name="backup_reminder_bar_dialog_title">Aldaketen segurtasun kopia ez da egin</string>
-    <string name="backup_reminder_bar_dialog_summary">Biltegian egindako azken aldaketen segurtasun kopiarik ez dago. Garrantzitsua da noizean behin kopia horiek egitea zure kontuetarako sarbidea ez galtzeko. Aztertu segurtasun kopia automatikoak konfiguratzea.
+    <string name="backup_reminder_bar_dialog_summary">
+Biltegian egindako azken aldaketen segurtasun kopiarik ez dago. Garrantzitsua da noizean behin kopia horiek egitea zure kontuetarako sarbidea ez galtzeko. Aztertu segurtasun kopia automatikoak konfiguratzea.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Konfiguratu segurtasun kopiak</string>
     <string name="backup_plaintext_export_warning"><b>Biltegia orain dela gutxi testu-huts gisa esportatu da</b></string>
@@ -489,6 +505,8 @@
     <string name="dialog_wipe_entries_title">Garbitu sarrerak</string>
     <string name="dialog_wipe_entries_message">Zure biltegiak sarrerak ditu dagoeneko. Sarrera horiek ezabatu nahi dituzu fitxategi hau inportatu aurretik?\n\n<b>Hori egitean, biltegiko sarreretarako sarbidea galduko da betirako.</b></string>
     <string name="dialog_wipe_entries_checkbox">Garbitu biltegiaren sarrerak</string>
+    <string name="import_from_clipboard_title">Inportatu arbeletik</string>
+    <string name="import_from_clipboard_message">Zure arbelean otpauth uri zuzen bat aurkitu dugu: \n\n<b>Izena</b>: %1$s\n<b>Jaulkitzailea</b>:%2$s\n\nSarrera hau automatikoki betetzeko erabili nahi duzu?</string>
     <string name="panic_trigger_ignore_toast">Aegisek arrisku mezua jaso du baina ezarpen hau desaktibatuta dago, ez da ezer egingo</string>
     <string name="pref_panic_trigger_title">Ezabatu biltegia arrisku mezua jasotzean</string>
     <string name="pref_panic_trigger_summary">Ezabatu biltegia Rippletik arrisku mezua jasotzean</string>
@@ -514,6 +532,7 @@
     <string name="importer_help_google_authenticator">&lt;b&gt;Google Authenticator aplikazioaren v5.10 bertsioa edo lehenagokoak diren datu-baseak erabili daitezke. \n\n&lt;b&gt;data/data/com.google.android.apps.authenticator2/databases/databases&lt;/b&gt; fitxategiaren kopia bat eman, berau Google Authenticator aplikazioaren barne biltegiratzean dago.</string>
     <string name="importer_help_microsoft_authenticator">Microsoft Authenticatoren <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b> fitxategia aukeratu.</string>
     <string name="importer_help_plain_text">Google Authenticator URIak dituen testu hutseko fitxategia aukeratu.</string>
+    <string name="importer_help_proton_authenticator">Aukeratu Proton Authenticator aplikazioaren esportazio fitxategia (.json), horretarako joan <b>Settings -&gt;Export</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 eta berriagoak ezin dira erabili.</b>erabili
 <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b> fitxategiaren kopia, berau Steamen barne biltegiratzearen karpetan egongo da.</string>
     <string name="importer_help_stratum">Aukeratu Stratumen esportazio fitxategia <b>Settings -&gt; Back up -&gt; Back up to encrypted file (recommended)</b> aukeratik lortu bezala.</string>

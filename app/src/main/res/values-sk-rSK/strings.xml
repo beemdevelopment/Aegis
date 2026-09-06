@@ -400,9 +400,11 @@
     <string name="google_qr_export_unrelated">Nesúvisiaci QR kód bol nájdený. Pokúste sa reštartovať skener.</string>
     <string name="backup_error_bar_message"><b>Zálohovanie trezora nedávno zlyhalo</b></string>
     <string name="backup_system_builtin">Vstavané automatické zálohy Aegisu</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Najnovšia záloha je zastaraná (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Najnovšia záloha je zastaraná (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Zmeny nie sú zálohované
+    <string name="backup_reminder_bar_message">
+        Zmeny nie sú zálohované
     </string>
     <string name="backup_reminder_bar_dialog_title">Zmeny nie sú zálohované</string>
     <string name="backup_plaintext_export_warning"><b>Trezor bol nedávno exportovaný ako obyčajný text</b></string>

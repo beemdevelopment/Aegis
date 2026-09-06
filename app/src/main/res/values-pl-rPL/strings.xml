@@ -193,6 +193,7 @@
     <string name="password_reminder_freq_biweekly">Co dwa tygodnie</string>
     <string name="password_reminder_freq_monthly">Co miesiąc</string>
     <string name="password_reminder_freq_quarterly">Co kwartał</string>
+    <string name="enter_password_proton_message">Wygląda na to, że ta kopia zapasowa Proton Authenticator jest zaszyfrowana. Wprowadź hasło poniżej.</string>
     <string name="enter_password_2fas_message">Wygląda na to, że ta kopia zapasowa 2FA jest zaszyfrowana. Wprowadź hasło poniżej.</string>
     <string name="enter_password_authy_message">Wygląda na to, że Twoje tokeny Authy są zaszyfrowane. Zamknij aplikację Aegis, otwórz Authy i odblokuj tokeny za pomocą hasła. Możesz również wpisać poniżej te hasło i aplikacja Aegis spróbuje odszyfrować tokeny Authy.</string>
     <string name="enter_password_aegis_title">Wprowadź hasło importu</string>
@@ -472,17 +473,22 @@
     </plurals>
     <string name="google_qr_export_unexpected">Aplikacja oczekiwała kodu QR nr %1$d, lecz zeskanowano kod nr %2$d</string>
     <string name="backup_error_bar_message"><b>Ostatnia kopia zapasowa sejfu nie powiodła się</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Ostatnia próba wykonania kopii zapasowej sejfu z użyciem %1$s nie powiodła się, ponieważ wystąpił błąd. Kopia zapasowa została wykonana w: %2$s. Sprawdź ustawienia kopii zapasowej, aby upewnić się, że wykonywanie kopii zapasowych może się pomyślnie zakończyć.    </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Niedawna próba wykonania kopii zapasowej używając %1$s nie powiodła się, ponieważ Aegis nie miał uprawnienia do zapisu w wybranym folderze. Próba zapisu była wykonana %2$s. Teb błąd może wystąpić po przeniesieniu/zmianie nazwy wybranego folderu lub po niedawnym przywróceniu Aegis z kopii zapasowej. Proszę wybrać poprawny folder.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+Ostatnia próba wykonania kopii zapasowej sejfu z użyciem %1$s nie powiodła się, ponieważ wystąpił błąd. Kopia zapasowa została wykonana w: %2$s. Sprawdź ustawienia kopii zapasowej, aby upewnić się, że wykonywanie kopii zapasowych może się pomyślnie zakończyć.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+Niedawna próba wykonania kopii zapasowej używając %1$s nie powiodła się, ponieważ Aegis nie miał uprawnienia do zapisu w wybranym folderze. Próba zapisu była wykonana %2$s. Teb błąd może wystąpić po przeniesieniu/zmianie nazwy wybranego folderu lub po niedawnym przywróceniu Aegis z kopii zapasowej. Proszę wybrać poprawny folder.
     </string>
     <string name="backup_system_builtin">Wbudowane automatyczne kopie zapasowe Aegis</string>
     <string name="backup_system_android">System kopii zapasowej w chmurze Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Najnowsza kopia zapasowa jest nieaktualna (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Najnowsza kopia zapasowa jest nieaktualna (%s)
     </string>
-    <string name="backup_reminder_bar_message">Zmiany nie są zapisane w kopii zapasowej
+    <string name="backup_reminder_bar_message">
+Zmiany nie są zapisane w kopii zapasowej
     </string>
     <string name="backup_reminder_bar_dialog_title">Zmiany nie zostały zapisane w kopii zapasowej</string>
-    <string name="backup_reminder_bar_dialog_summary">        Zmiany w sejfie nie zostały jeszcze zapisane w kopii zapasowej. Ważne jest wykonywanie regularnych kopii zapasowych, aby zapobiec utracie dostępu do twoich kont. Rozważ włączenie automatycznych kopii zapasowych w menu ustawień.
+    <string name="backup_reminder_bar_dialog_summary">
+        Zmiany w sejfie nie zostały jeszcze zapisane w kopii zapasowej. Ważne jest wykonywanie regularnych kopii zapasowych, aby zapobiec utracie dostępu do twoich kont. Rozważ włączenie automatycznych kopii zapasowych w menu ustawień.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Skonfiguruj tworzenie kopii zapasowych</string>
     <string name="backup_plaintext_export_warning"><b>Sejf został ostatnio wyeksportowany w jawnym tekście</b></string>

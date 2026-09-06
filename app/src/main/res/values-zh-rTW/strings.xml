@@ -30,6 +30,7 @@
     <string name="pref_section_import_export_title">匯入 &amp; 匯出</string>
     <string name="pref_section_import_export_summary">匯入 Aegis 或其他驗證程式的備份檔，或手動匯出 Aegis 保險箱。</string>
     <string name="pref_section_audit_log_title">稽核記錄</string>
+    <string name="pref_section_audit_log_summary">找出應用程式內發生的所有重要事件清單。</string>
     <string name="pref_section_backups_title">備份</string>
     <string name="pref_section_backups_summary">設定自動備份至指定位置或啟用 Android 內建的雲端備份系統。</string>
     <string name="pref_section_icon_packs">圖示合輯</string>
@@ -62,6 +63,7 @@
     <string name="pref_backups_reminder_title">備份提醒</string>
     <string name="pref_backups_reminder_summary">提示您備份保險箱以避免最後的變更狀態未被加入備份。</string>
     <string name="pref_backups_reminder_dialog_title">關閉備份提醒</string>
+    <string name="pref_backups_reminder_dialog_summary">停用後 Aegis 不會再提醒您備份未備份的變更。這會讓你有遺失 tokens 的風險。您確定要停用嗎？</string>
     <string name="pref_backups_versioning_strategy_title">備份策略</string>
     <string name="pref_backups_versioning_strategy_keep_x_versions">保留多份備份檔</string>
     <string name="pref_backups_versioning_strategy_single_backup">單一備份</string>
@@ -120,6 +122,8 @@
     <string name="pref_search_behavior_type_groups">群組</string>
     <string name="pref_set_password_title">變更密碼</string>
     <string name="pref_set_password_summary">為保險箱設定新解鎖密碼</string>
+    <string name="no_events_title">沒有報告的事件</string>
+    <string name="no_events_description">應用程式沒有已報告的重要事件</string>
     <string name="event_title_vault_unlocked">保險箱已解鎖</string>
     <string name="event_description_vault_unlocked">保險箱已成功解鎖</string>
     <string name="event_title_backup_created">備份已建立</string>
@@ -172,6 +176,7 @@
     <string name="set_password_confirm">請確認密碼</string>
     <string name="invalid_password">密碼錯誤</string>
     <string name="invalidated_biometrics">偵測到您的裝置更新了安全性設定。請前往「Aegis -&gt; 設定 -&gt; 安全性 -&gt; 生物特徵辨識解鎖」停用並重新啟用生物特徵辨識解鎖。</string>
+    <string name="password_reminder">請輸入您的密碼。我們偶爾會提醒您進行此操作，防止您忘記密碼。</string>
     <string name="password_reminder_dialog_title">預設使用生物特徵辨識解鎖</string>
     <string name="password_reminder_dialog_message">我們會不定期的要求您使用密碼解鎖，以確保您尚未忘記設定的密碼而被拒於門外。當你成功使用密碼解鎖後，Aegis 將會回到原本的生物特徵解鎖模式，直到下一次的密碼提醒。</string>
     <string name="password_reminder_freq_never">從不</string>
@@ -179,6 +184,7 @@
     <string name="password_reminder_freq_biweekly">隔週一次</string>
     <string name="password_reminder_freq_monthly">每月一次</string>
     <string name="password_reminder_freq_quarterly">每季（三個月）一次</string>
+    <string name="enter_password_proton_message">看來這 Proton 驗證器的備份已被加密。請在下方輸入密碼。</string>
     <string name="enter_password_2fas_message">看來此 2FAS 備份已被加密，請在此輸入密碼。</string>
     <string name="enter_password_authy_message">您的似乎已加密 Authy 驗證碼。請關閉 Aegis，開啟 Authy，然後使用您的密碼解鎖憑證。另外，如果您在下方輸入 Authy 的解密密碼，Aegis 也可以嘗試為您解密 Authy 憑證。</string>
     <string name="enter_password_aegis_title">請輸入匯入密碼</string>
@@ -203,6 +209,7 @@
     <string name="select_all">選擇全部</string>
     <string name="assign_icons">分配圖示</string>
     <string name="assign_groups">指派給群組</string>
+    <string name="assign_groups_dialog_summary">選選你想要將選中的條目分配到的群組。</string>
     <string name="assign_groups_dialog_dropdown">選擇群組</string>
     <string name="favorite" comment="Verb">加入最愛</string>
     <string name="unfavorite" comment="Verb">移出最愛</string>
@@ -230,6 +237,7 @@
     <string name="importing_icon_pack">正在匯入圖示合輯</string>
     <string name="delete_entry">刪除條目</string>
     <string name="delete_entry_description">您確定要刪除此條目嗎？</string>
+    <string name="delete_entry_explanation">此操作不會為下列服務停用 2FA：\n<b>%s</b>\n\n為了防止丟失存取權限，請確定您已停用 2FA 或您有其他方式為此服務生成驗證碼。</string>
     <string name="delete_entries">刪除條目</string>
     <plurals name="delete_entries_description">
         <item quantity="other">您確定要刪除 %d 個條目嗎？</item>
@@ -267,6 +275,7 @@
     <string name="backup_warning_password">備份檔將使用安全性選項中設定的獨立密碼加密</string>
     <string name="documentsui_error">似乎無法在您的裝置上找到 DocumentsUI。此為新增與建立文件的重要系統元件。若您曾使用&quot;debloat&quot; 軟體替您的裝置「瘦身」，極有可能您誤刪此程式，請將其重新安裝。</string>
     <string name="icon_pack_import_error">嘗試匯入圖示包時發生錯誤</string>
+    <string name="icon_pack_import_exists_error">您嘗試匯入的圖示包已經存在，您想要覆蓋它嗎？</string>
     <string name="icon_pack_delete_error">試圖刪除圖示合輯時出錯</string>
     <plurals name="icon_pack_info">
         <item quantity="other">%d 個圖示</item>
@@ -279,12 +288,14 @@
     <string name="choose_totpauth_importer">此 TOTP 驗證器備份是否已使用密碼加密？</string>
     <string name="choose_application">選擇欲匯入的來源應用程式</string>
     <string name="choose_theme">選擇您想要的主題</string>
+    <string name="choose_account_name_position">選譯您期望的帳號名稱位置</string>
     <string name="choose_view_mode">選擇您想要的檢視模式</string>
     <string name="choose_copy_behavior">請選擇您想要的複製行為</string>
     <string name="parsing_file_error">試圖解構檔案時發生錯誤</string>
     <string name="file_not_found">錯誤：找不到檔案</string>
     <string name="reading_file_error">試圖開啟檔案時發生錯誤</string>
     <string name="app_lookup_error">錯誤：應用程式未安裝</string>
+    <string name="app_version_error">不支援已安裝的 %s 版本。近期的版本已經開始加密內部儲存目錄中的部分檔案，導致 Aegis 無法存取匯入所需的資料。嘗試匯入很可能會發生錯誤。您確定仍要繼續嗎？</string>
     <string name="root_error">錯誤：無法取得 root 權限</string>
     <plurals name="imported_entries_count">
         <item quantity="other">已匯入 %d 個條目</item>
@@ -308,6 +319,8 @@
         <item quantity="other">還是匯入 %d 組 token</item>
     </plurals>
     <string name="import_google_auth_failure">匯入 Google Authenticator 失敗</string>
+    <string name="unrelated_google_auth_batches_error">匯出資料包含不相關批次的資訊。請嘗試一次僅匯入 1 個批次。</string>
+    <string name="no_tokens_can_be_imported">沒有可匯入的 tokens</string>
     <string name="unlocking_vault">解鎖保險箱</string>
     <string name="rename_group">重新命名群組</string>
     <string name="no_group_selection">倘若一個條目並不歸類在任何群組內，它會被歸類進「無群組」。</string>
@@ -316,6 +329,7 @@
     <string name="remove_unused_groups">刪除未使用的群組</string>
     <string name="remove_unused_groups_description">您確定要刪除所有沒有歸類任何條目的群組嗎？</string>
     <string name="remove_icon_pack">移除圖示合輯</string>
+    <string name="remove_icon_pack_description">您確定你要移除這個圖示包嗎？使用這圖示包的條目不會受到影響。</string>
     <string name="details">詳細資訊</string>
     <string name="show_error_details">顯示錯誤詳細內容</string>
     <string name="lock">鎖定</string>
@@ -348,6 +362,10 @@
     <string name="dialog_duplicate_entry_suffix_title">增加尾註</string>
     <string name="dialog_duplicate_entry_suffix_subtitle">為新的條目增加一個後綴詞，新的名稱如下：%s</string>
     <string name="dialog_duplicate_entry_cancel_title">取消儲存</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">允許您在再次嘗試儲存前先編輯該條目</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="other">您確定要刪除包含以下名稱的 %d 個條目嗎：\n\n%s - %s</item>
+    </plurals>
     <string name="dialog_duplicate_entry_overwrite_dialog_title">確認刪除</string>
     <string name="pref_haptic_feedback_summary">重新整理時震動您的裝置</string>
     <string name="pref_haptic_feedback_title">觸覺回饋</string>
@@ -383,6 +401,7 @@
     <string name="unable_to_process_deeplink">無法處理 deep link</string>
     <string name="unable_to_read_qrcode_file">無法從 %s 檔案讀取和處理 QR Code</string>
     <string name="unable_to_process_shared_text">無法將共用文本作為 OTP 進行處理</string>
+    <string name="unable_to_read_qrcode_files">無法讀取和處理一些 QR codes。只有 %1$d/%2$d 條目會被匯入。</string>
     <string name="unable_to_generate_qrcode">無法產生 QR Code</string>
     <string name="select_picture">選擇圖片</string>
     <string name="select_icon">選擇圖示</string>
@@ -418,16 +437,22 @@
     </plurals>
     <string name="google_qr_export_unexpected">預期 QR Code 個數 %1$d，然而已掃描個數 %2$d</string>
     <string name="backup_error_bar_message"><b>近期的保險箱備份失敗</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        最近一次嘗試使用 %1$s 的備份行為失敗。本次備份發生於 %2$s。請檢查您的備份設定以確保備份能順利完成。
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        最近一次嘗試使用 %1$s 的備份行為失敗。本次備份發生於 %2$s。請檢查您的備份設定以確保備份能順利完成。
     </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+最近使用 %1$s 嘗試備份保管庫失敗，因為 Aegis 沒有寫入備份目的地的權限。備份嘗試時間為 %2$s。若您移動或重新命名了備份目的地，或是最近從備份中還原了 Aegis，都可能會發生此錯誤。請重新設定備份目的地    </string>
     <string name="backup_system_builtin">Aegis 內建的自動備份</string>
     <string name="backup_system_android">Android 雲端備份</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        最新的備份已過時 (%s)    
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        最新的備份已過時 (%s)    
     </string>
-    <string name="backup_reminder_bar_message">        變更尚未備份。
+    <string name="backup_reminder_bar_message">
+        變更尚未備份。
     </string>
     <string name="backup_reminder_bar_dialog_title">變更尚未備份</string>
-    <string name="backup_reminder_bar_dialog_summary">        尚未備份最近針對保險箱的操作。週期性的備份是避免遺失登入方法的最佳良方。請考慮在設定選單內啟用自動備份。
+    <string name="backup_reminder_bar_dialog_summary">
+        尚未備份最近針對保險箱的操作。週期性的備份是避免遺失登入方法的最佳良方。請考慮在設定選單內啟用自動備份。
     </string>
     <string name="backup_reminder_bar_dialog_accept">設置備份</string>
     <string name="backup_plaintext_export_warning"><b>最近保險箱曾匯出為純文字</b></string>
@@ -474,10 +499,16 @@
     <string name="dialog_wipe_entries_title">清除條目</string>
     <string name="dialog_wipe_entries_message">您的保險箱中已包含某些條目，您是否想在匯入這個檔案前，先移除這些重複的條目？\n\n<b>如此將永久刪除保險箱中原本存在的重複條目。</b></string>
     <string name="dialog_wipe_entries_checkbox">清除保險箱中的所有內容</string>
+    <string name="import_from_clipboard_title">從剪貼簿匯入</string>
+    <string name="import_from_clipboard_message">我們在您的剪貼簿上找到了一個有效的 otpauth uri。\n\n<b>名稱</b>：%1$s\n<b>服務商</b>：%2$s\n\n你想要用他預先填充此條目嗎？</string>
+    <string name="panic_trigger_ignore_toast">Aegis 收到了危急指令，但此設定被停用，忽略中</string>
     <string name="pref_panic_trigger_title">危急時刪除保險箱</string>
     <string name="pref_panic_trigger_summary">從 Ripple 收到危急指令時刪除保險箱</string>
     <string name="import_vault">匯入 Aegis 金鑰庫</string>
     <string name="import_vault_hint">想從其他 2FA 驗證器應用程式匯入？先完成首次設定，就可在設定功能表中匯入。</string>
+    <plurals name="import_duplicate_toast">
+        <item quantity="other">未選中 %d 個潛在重複項。請檢查條目列表。</item>
+    </plurals>
     <string name="importer_help_2fas">請提供 2FAS Authenticator 的備份檔。</string>
     <string name="importer_help_aegis">請提供 Aegis 的匯出/備份檔。</string>
     <string name="importer_help_authenticator_plus">請透過 Authenticator Plus 的 <b>選項 -> 備份與還原 -> 匯出為純文字與 HTML</b> 功能匯出，並提供匯出的檔案。</string>

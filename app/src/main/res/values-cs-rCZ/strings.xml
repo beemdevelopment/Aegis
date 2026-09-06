@@ -193,6 +193,7 @@
     <string name="password_reminder_freq_biweekly">Každý druhý týden</string>
     <string name="password_reminder_freq_monthly">Měsíčně</string>
     <string name="password_reminder_freq_quarterly">Čtvrtletně</string>
+    <string name="enter_password_proton_message">Zdá se, že tato záloha aplikace Proton Authenticator je šifrovaná. Zadejte prosím heslo níže.</string>
     <string name="enter_password_2fas_message">Zdá se, že tato záloha 2FAS je šifrovaná. Zadejte prosím heslo níže.</string>
     <string name="enter_password_authy_message">Vypadá to, že vaše Authy tokeny jsou šifrovány. Prosím, zavřete Aegis, otevřete Authy a odemkněte tokeny pomocí vašeho hesla. Alternativně se může Aegis pokusit dešifrovat vaše Authy tokeny, pokud zadáte své heslo níže.</string>
     <string name="enter_password_aegis_title">Zadejte heslo importu</string>
@@ -472,18 +473,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">Očekáván QR kód #%1$d, avšak naskenován byl #%2$d</string>
     <string name="backup_error_bar_message"><b>Vytvoření zálohy trezoru se nedávno nezdařilo</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Pokus o nedávnou zálohu trezoru pomocí %1$s selhal, protože došlo k chybě. Pokus o zálohu byl uskutečněn %2$s. Zkontrolujte prosím svá nastavení pro ujištění se, že zálohy mohou být úspěšně dokončeny.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Pokus o nedávnou zálohu trezoru pomocí %1$s selhal, protože došlo k chybě. Pokus o zálohu byl uskutečněn %2$s. Zkontrolujte prosím svá nastavení pro ujištění se, že zálohy mohou být úspěšně dokončeny.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Nedávný pokus o zálohu trezoru pomocí %1$s selhal, protože Aegis neměl oprávnění k zápisu do cílového adresáře. Pokus o zálohu byl proveden %2$s. Tato chyba může nastat, když přesunete/přejmenujete cíl zálohy nebo pokud jste nedávno obnovili Aegis ze zálohy. Nastavte prosím znovu cíl pro zálohu.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Nedávný pokus o zálohu trezoru pomocí %1$s selhal, protože Aegis neměl oprávnění k zápisu do cílového adresáře. Pokus o zálohu byl proveden %2$s. Tato chyba může nastat, když přesunete/přejmenujete cíl zálohy nebo pokud jste nedávno obnovili Aegis ze zálohy. Nastavte prosím znovu cíl pro zálohu.
     </string>
     <string name="backup_system_builtin">Zabudované zálohy aplikace Aegis</string>
     <string name="backup_system_android">Cloudový zálohovací systém systému Android</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Poslední záloha je zastaralá (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Poslední záloha je zastaralá (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Změny nejsou zálohovány
+    <string name="backup_reminder_bar_message">
+        Změny nejsou zálohovány
     </string>
     <string name="backup_reminder_bar_dialog_title">Změny nejsou zálohovány</string>
-    <string name="backup_reminder_bar_dialog_summary">        Nedávné změny v trezoru ještě nebyly zálohovány. Je důležité provádět pravidelné zálohování, aby nedošlo ke ztrátě přístupu k účtům. Zvažte prosím nastavení automatického zálohování v nabídce nastavení.
+    <string name="backup_reminder_bar_dialog_summary">
+        Nedávné změny v trezoru ještě nebyly zálohovány. Je důležité provádět pravidelné zálohování, aby nedošlo ke ztrátě přístupu k účtům. Zvažte prosím nastavení automatického zálohování v nabídce nastavení.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Nastavit zálohování</string>
     <string name="backup_plaintext_export_warning"><b>Trezor byl nedávno exportován v prostém textu</b></string>

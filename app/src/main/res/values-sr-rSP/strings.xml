@@ -95,6 +95,7 @@
         <item quantity="few">Прескочено %d некомпатибилних уноса</item>
         <item quantity="other">Прескочено %d некомпатибилних уноса</item>
     </plurals>
+    <string name="pref_password_reminder_summary">Прикажи %s подсетник за унос лозинке, како је не бисте заборавили.</string>
     <string name="pref_password_reminder_summary_disabled">Онемогућено</string>
     <string name="pref_secure_screen_title">Безбедност екрана</string>
     <string name="pref_secure_screen_summary">Блокирај снимке екрана и остале покушаје снимања екрана у апликацији</string>
@@ -189,6 +190,7 @@
     <string name="password_reminder_freq_biweekly">Двонедељно</string>
     <string name="password_reminder_freq_monthly">Месечно</string>
     <string name="password_reminder_freq_quarterly">Тромесечно</string>
+    <string name="enter_password_proton_message">Изгледа да је ова резервна копија Proton Authenticator-а шифрована. Унесите лозинку испод.</string>
     <string name="enter_password_2fas_message">Изгледа да је ова 2FAS резервна копија шифрована. Унесите лозинку испод.</string>
     <string name="enter_password_authy_message">Изгледа да су ваши Authy токени шифровани. Затворите Aegis, отворите Authy и откључајте токене својом лозинком. Уместо тога, Aegis такође може покушати да дешифрује ваше Authy токене за вас, ако унесете своју лозинку испод.</string>
     <string name="enter_password_aegis_title">Унесите лозинку за увоз</string>
@@ -229,6 +231,8 @@
     <string name="snackbar_authentication_method">Изаберите методу за аутентификацију</string>
     <string name="encrypting_vault">Шифровање трезора</string>
     <string name="exporting_vault">Извожење трезора</string>
+    <string name="optimizing_icon">Оптимизација иконице</string>
+    <string name="optimizing_icon_multiple">Оптимизација иконица %1$d/%2$d</string>
     <string name="reading_file">Читање фајла</string>
     <string name="requesting_root_access">Захтевање root приступа</string>
     <string name="analyzing_qr">Анализирање QR кода</string>
@@ -369,8 +373,26 @@
     <string name="preference_reset_usage_count_dialog">Сигурно подесити бројач коришћења на 0 за све уносе у трезору?</string>
     <string name="note" comment="Users can add a note to an entry">Напомена</string>
     <string name="clear">Обриши</string>
+    <string name="dialog_duplicate_entry_title" comment="'Duplicate' is a noun here">Дупликат уноса</string>
+    <string name="dialog_duplicate_entry_message">Овај унос има исто име и издаваоца као један или више постојећих уноса. Како желите да наставите?</string>
+    <string name="dialog_duplicate_entry_overwrite_title">Пребриши постојећи унос / постојеће уносе</string>
+    <string name="dialog_duplicate_entry_overwrite_subtitle">Замените постојећи унос или уносе новим. Ова радња се не може поништити</string>
+    <string name="dialog_duplicate_entry_suffix_title">Додај суфикс</string>
+    <string name="dialog_duplicate_entry_suffix_subtitle">Додајте суфикс имену овог новог уноса. Ново име ће бити: %s</string>
+    <string name="dialog_duplicate_entry_cancel_title">Откажи чување</string>
+    <string name="dialog_duplicate_entry_cancel_subtitle">Омогућава вам да измените унос пре поновног покушаја чувања</string>
+    <plurals name="dialog_duplicate_entry_overwrite_dialog_message">
+        <item quantity="one">Да ли сте сигурни да желите да избришете %d унос са следећим именом:\n\n%s - %s</item>
+        <item quantity="few">Да ли сте сигурни да желите да избришете %d уноса са следећим именом:\n\n%s - %s</item>
+        <item quantity="other">Да ли сте сигурни да желите да избришете %d уноса са следећим именом:\n\n%s - %s</item>
+    </plurals>
+    <string name="dialog_duplicate_entry_overwrite_dialog_title">Потврда брисања</string>
+    <string name="pref_haptic_feedback_summary">Омогућите вибрацију уређаја приликом освежавања кодова</string>
+    <string name="pref_haptic_feedback_title">Хактички одзив</string>
     <string name="pref_highlight_entry_title">Нагласи токене на додир</string>
     <string name="pref_highlight_entry_summary">Привремено нагласи токене на додир како би били видљивији</string>
+    <string name="pref_groups_multiselect_title">Вишеструки избор група</string>
+    <string name="pref_groups_multiselect_summary">Омогућите избор више група истовремено</string>
     <string name="pref_minimize_on_copy_title">Минимизирај приликом копирања</string>
     <string name="pref_minimize_on_copy_summary">Минимизирајте апликацију након копирања токена</string>
     <string name="pref_copy_behavior_title">Копирај токене у привремену меморију</string>
@@ -439,17 +461,22 @@
     </plurals>
     <string name="google_qr_export_unexpected">Очекиван је QR кôд #%1$d, али је уместо тога скениран #%2$d</string>
     <string name="backup_error_bar_message"><b>Недавно није успело прављење резервне копије трезора</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Недавни покушај прављења резервне копије трезора помоћу %1$s није успео, јер је дошло до грешке. Прављење резервне копије је покушано %2$s. Проверите подешавања резервних копија да бисте били сигурни да се прављење резервних копија може успешно завршити.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+Недавни покушај прављења резервне копије трезора помоћу %1$s није успео, јер је дошло до грешке. Прављење резервне копије је покушано %2$s. Проверите подешавања резервних копија да бисте били сигурни да се прављење резервних копија може успешно завршити.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">Недавни покушај прављења резервне копије трезора помоћу %1$s није успео, јер Aegis није имао дозволу да пише на одредиште резервне копије. Прављење резервне копије је покушано %2$s. До ове грешке може доћи ако сте преместили/преименовали одредиште резервне копије или ако сте недавно вратили Aegis из резервне копије. Поново конфигуришите одредиште резервне копије.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+Недавни покушај прављења резервне копије трезора помоћу %1$s није успео, јер Aegis није имао дозволу да пише на одредиште резервне копије. Прављење резервне копије је покушано %2$s. До ове грешке може доћи ако сте преместили/преименовали одредиште резервне копије или ако сте недавно вратили Aegis из резервне копије. Поново конфигуришите одредиште резервне копије.    </string>
     <string name="backup_system_builtin">уграђене аутоматске резервне копије у Aegis</string>
     <string name="backup_system_android">система резервних копија у облаку у Android-у</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Последња резервна копија је застарела (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Последња резервна копија је застарела (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Нема резервне копије промена
+    <string name="backup_reminder_bar_message">
+        Нема резервне копије промена
     </string>
     <string name="backup_reminder_bar_dialog_title">Нема резервне копије промена</string>
-    <string name="backup_reminder_bar_dialog_summary">Недавне промене у трезору још увек немају направљену резервну копију. Важно је да редовно правите резервне копије како бисте спречили губитак приступа вашим налозима. Размислите о подешавању аутоматског прављења резервних копија у менију подешавања.
+    <string name="backup_reminder_bar_dialog_summary">
+Недавне промене у трезору још увек немају направљену резервну копију. Важно је да редовно правите резервне копије како бисте спречили губитак приступа вашим налозима. Размислите о подешавању аутоматског прављења резервних копија у менију подешавања.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Подесите резервне копије</string>
     <string name="backup_plaintext_export_warning"><b>Трезор је недавно извезен као обичан текст</b></string>
@@ -476,6 +503,7 @@
     <string name="unable_to_copy_uri_to_clipboard">Није могуће копирати URI у привремену меморију</string>
     <string name="uri_copied_to_clipboard">URI је копиран у привремену меморију</string>
     <string name="transfer_entry_description">Скенирајте овај QR кôд помоћу апликације за аутентификацију у коју желите да пренесете овај унос</string>
+    <string name="transfer_entry_brightness">Додирните QR код за пребацивање на пуну осветљеност екрана</string>
     <string name="google_auth_compatible_transfer_description">Скенирајте ове QR кодове користећи Aegis или Google Authenticator.\n\nЗбог ограничења апликације Google Authenticator, обухваћени су само TOTP и HOTP токени који користе SHA1 и производе 6-цифрене кодове</string>
     <string name="password_strength_very_weak">Веома слаба</string>
     <string name="password_strength_weak">Слаба</string>
@@ -497,6 +525,8 @@
     <string name="dialog_wipe_entries_title">Чишћење уноса</string>
     <string name="dialog_wipe_entries_message">Ваш трезор већ садржи уносе. Желите ли да уклоните ове уносе пре увоза овог фајла?\n\n<b>На тај начин ћете трајно изгубити приступ постојећим уносима у трезору.</b></string>
     <string name="dialog_wipe_entries_checkbox">Очисти садржаје трезора</string>
+    <string name="import_from_clipboard_title">Увези из привремене меморије</string>
+    <string name="import_from_clipboard_message">Пронашли смо важећи otpauth Uri у привременој меморији.\n\n<b>Име</b>:%1$s\n<b>Издавалац</b>:%2$s\n\nЖелите ли да искористите ове податке за попуњавање овог уноса?</string>
     <string name="panic_trigger_ignore_toast">Aegis је примио сигнал панике, али је подешавање онемогућено, сигнал панике се занемарује</string>
     <string name="pref_panic_trigger_title">Избриши трезор при сигналу панике</string>
     <string name="pref_panic_trigger_summary">Избришите трезор када се од Ripple прими сигнал панике</string>
@@ -523,7 +553,9 @@
     <string name="importer_help_google_authenticator"><b>Подржани су само фајлови базе података из Google Authenticator v5.10 и старијих</b>.\n\nДоставите копију <b>/data/data/com.google.android.apps.authenticator2/databases/databases</b>, која се налази у фолдеру интерне меморије Google Authenticator-а.</string>
     <string name="importer_help_microsoft_authenticator">Доставите копију <b>/data/data/com.azure.authenticator/databases/PhoneFactor</b>, која се налази у фолдеру интерне меморије Microsoft Authenticator-а.</string>
     <string name="importer_help_plain_text">Доставите обичан текстуални фајл са URI-јем Google Authenticator-а у сваком реду.</string>
+    <string name="importer_help_proton_authenticator">Приложите датотеку извоза за Proton Authenticator (.json) коју сте преузели путем опције <b>Подешавања -&gt; Извоз</b>.</string>
     <string name="importer_help_steam"><b>Steam v3.0 и новији нису подржани</b>. Доставите копију <b>/data/data/com.valvesoftware.android.steam.community/files/Steamguard-*.json</b>, која се налази у фолдеру интерне меморије Steam-а.</string>
+    <string name="importer_help_stratum">Приложите датотеку извоза за Stratum коју сте преузели путем опције <b>Подешавања -&gt; Резервна копија -&gt; Направи резервну копију у шифровану датотеку (препоручено)</b>.</string>
     <string name="importer_help_totp_authenticator">Доставите фајл извоза TOTP Authenticator-а.</string>
     <string name="importer_help_winauth">Доставите фајл извоза WinAuth-а.</string>
     <string name="import_assign_icons_dialog_title">Доделите иконице</string>

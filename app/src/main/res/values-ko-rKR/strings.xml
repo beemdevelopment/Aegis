@@ -184,6 +184,7 @@
     <string name="password_reminder_freq_biweekly">2주</string>
     <string name="password_reminder_freq_monthly">1개월</string>
     <string name="password_reminder_freq_quarterly">3개월</string>
+    <string name="enter_password_proton_message">Proton 인증자 백업이 암호화되어 있습니다. 아래에 비밀번호를 입력해주세요.</string>
     <string name="enter_password_2fas_message">2FAS 백업이 암호화되어 있습니다. 아래에 비밀번호를 입력해주세요.</string>
     <string name="enter_password_authy_message">Authy 토큰이 암호화된 것으로 보입니다. Aegis를 닫은 다음 Authy를 열고 비밀번호로 토큰을 해제해주세요. 아래에 비밀번호를 입력해서도 Aegis가 대신 Authy 토큰을 해독할 수 있습니다.</string>
     <string name="enter_password_aegis_title">가져오기 비밀번호를 입력해주세요</string>
@@ -437,17 +438,22 @@
     </plurals>
     <string name="google_qr_export_unexpected">QR 코드 #%1$d가 아닌 QR 코드 #%2$d가 스캔됨</string>
     <string name="backup_error_bar_message"><b>보관함 백업이 최근에 실패했습니다</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        최근에 %1$s를 사용한 보관함 백업에 오류가 발생했습니다. 백업이 %2$s에 시도되었습니다. 백업이 완전하게 이루어질 수 있는지 설정을 확인해주세요.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        최근에 %1$s를 사용한 보관함 백업에 오류가 발생했습니다. 백업이 %2$s에 시도되었습니다. 백업이 완전하게 이루어질 수 있는지 설정을 확인해주세요.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Aegis에 백업 대상에 대한 쓰기 권한이 없어서 %1$s를 사용하여 최근 보관함 백업을 시도하지 못했습니다. 백업이 %2$s에 시도되었습니다. 이 오류는 백업 대상을 이동/이름을 변경했거나 최근에 백업에서 Aegis를 복원한 경우에 발생할 수 있습니다. 백업 대상을 다시 설정하세요.    </string>
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Aegis에 백업 대상에 대한 쓰기 권한이 없어서 %1$s를 사용하여 최근 보관함 백업을 시도하지 못했습니다. 백업이 %2$s에 시도되었습니다. 이 오류는 백업 대상을 이동/이름을 변경했거나 최근에 백업에서 Aegis를 복원한 경우에 발생할 수 있습니다. 백업 대상을 다시 설정하세요.    </string>
     <string name="backup_system_builtin">Aegis의 내부 자동 백업</string>
     <string name="backup_system_android">안드로이드 클라우드 백업 시스템</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        마지막 백업이 오래되었습니다 (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        마지막 백업이 오래되었습니다 (%s)
     </string>
-    <string name="backup_reminder_bar_message">        변경 사항이 백업되지 않았습니다
+    <string name="backup_reminder_bar_message">
+        변경 사항이 백업되지 않았습니다
     </string>
     <string name="backup_reminder_bar_dialog_title">변경 사항이 백업되지 않았습니다</string>
-    <string name="backup_reminder_bar_dialog_summary">        최근 보관함의 변경 사항이 아직 백업되지 않았습니다. 계정에 대한 액세스 권한을 잃지 않으려면 정기적으로 백업을 하는 것이 중요합니다. 설정 메뉴에서 자동 백업을 설정해 보세요.
+    <string name="backup_reminder_bar_dialog_summary">
+        최근 보관함의 변경 사항이 아직 백업되지 않았습니다. 계정에 대한 액세스 권한을 잃지 않으려면 정기적으로 백업을 하는 것이 중요합니다. 설정 메뉴에서 자동 백업을 설정해 보세요.
     </string>
     <string name="backup_reminder_bar_dialog_accept">백업 설정하기</string>
     <string name="backup_plaintext_export_warning"><b>보관함이 최근에 일반 글자로 내보내졌습니다</b></string>
@@ -494,6 +500,8 @@
     <string name="dialog_wipe_entries_title">항목 지우기</string>
     <string name="dialog_wipe_entries_message">보관함이 항목들을 포함합니다. 이 파일을 불러오기 전에 중복되는 항목을 제거하시겠나요?\n\n<b>이렇게 하면, 보관함에 있는 기존 항목에 영구적으로 액세스할 수 없게 됩니다.</b></string>
     <string name="dialog_wipe_entries_checkbox">보관함 내용 지우기</string>
+    <string name="import_from_clipboard_title">클립보드에서 가져오기</string>
+    <string name="import_from_clipboard_message">클립보드에서 OTP 설정 URI을 찾았습니다.\n\n<b>이름</b>: %1$s\n<b>제공자</b>: %2$s\n\n이것으로 항목을 채우시겠나요?</string>
     <string name="panic_trigger_ignore_toast">Aeigs가 패닉 트리거를 수신했지만 비활성화이므로, 무시합니다</string>
     <string name="pref_panic_trigger_title">패닉 트리거의 보관함 삭제</string>
     <string name="pref_panic_trigger_summary">Ripple에서 패닉 트리거를 수신하면 보관함 삭제</string>

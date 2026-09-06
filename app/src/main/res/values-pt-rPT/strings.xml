@@ -455,7 +455,8 @@
     <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">O último backup está desatualizado (%s)</string>
     <string name="backup_reminder_bar_message">As mudanças não foram gravadas</string>
     <string name="backup_reminder_bar_dialog_title">As mudanças não foram gravadas</string>
-    <string name="backup_reminder_bar_dialog_summary">        As alterações recentes ao cofre ainda não foram objeto de backup. É importante efetuar backups regulares para evitar a perda de acesso às suas contas. Considere a possibilidade de configurar backups automáticos nas definições.
+    <string name="backup_reminder_bar_dialog_summary">
+        As alterações recentes ao cofre ainda não foram objeto de backup. É importante efetuar backups regulares para evitar a perda de acesso às suas contas. Considere a possibilidade de configurar backups automáticos nas definições.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Configurar backups</string>
     <string name="backup_plaintext_export_warning"><b>O cofre foi exportado recentemente em texto simples</b></string>

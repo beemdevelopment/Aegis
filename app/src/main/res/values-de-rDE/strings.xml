@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">alle 2 Wochen</string>
     <string name="password_reminder_freq_monthly">monatlich</string>
     <string name="password_reminder_freq_quarterly">vierteljährlich</string>
+    <string name="enter_password_proton_message">Es sieht so aus, als wäre diese Proton-Authenticator-Sicherung verschlüsselt. Bitte gib unten das Passwort ein.</string>
     <string name="enter_password_2fas_message">Es sieht so aus, als ob diese 2FAS-Sicherung verschlüsselt ist. Bitte das Passwort unten eingeben.</string>
     <string name="enter_password_authy_message">Es sieht so aus, als ob deine Authy-Token verschlüsselt sind. Bitte schließe Aegis, öffne Authy und entsperre die Token mit deinem Passwort. Aegis kann ebenfalls versuchen, deine Authy-Token zu entschlüsseln, wenn du unten dein Passwort eingibst.</string>
     <string name="enter_password_aegis_title">Gib das Passwort der zu importierenden Datenbank ein</string>
@@ -448,9 +449,11 @@
     </plurals>
     <string name="google_qr_export_unexpected">QR-Code Nr. %1$d erwartet, stattdessen wurde Nr. %2$d gescannt</string>
     <string name="backup_error_bar_message"><b>Sicherungskopie ist kürzlich fehlgeschlagen</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ein kürzlicher Sicherungsversuch der Datenbank mit %1$s ist fehlgeschlagen, da ein Fehler aufgetreten ist. Das Erstellen einer Sicherung wurde am %2$s versucht. Bitte überprüfe deine Sicherungseinstellungen, damit Sicherungen erfolgreich abgeschlossen werden können.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Ein kürzlicher Sicherungsversuch der Datenbank mit %1$s ist fehlgeschlagen, da ein Fehler aufgetreten ist. Das Erstellen einer Sicherung wurde am %2$s versucht. Bitte überprüfe deine Sicherungseinstellungen, damit Sicherungen erfolgreich abgeschlossen werden können.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Ein kürzlicher Sicherungsversuch der Datenbank mit %1$s ist fehlgeschlagen, da Aegis keine Berechtigung zum Schreiben auf das Sicherungsziel hatte. Das Erstellen einer Sicherung wurde am %2$s versucht. Dieser Fehler kann auftreten, wenn das Sicherungsziel verschoben/umbenannt wurde oder wenn Aegis kürzlich aus einer Sicherung wiederhergestellt wurde. Bitte konfiguriere das Sicherungsziel neu.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Ein kürzlicher Sicherungsversuch der Datenbank mit %1$s ist fehlgeschlagen, da Aegis keine Berechtigung zum Schreiben auf das Sicherungsziel hatte. Das Erstellen einer Sicherung wurde am %2$s versucht. Dieser Fehler kann auftreten, wenn das Sicherungsziel verschoben/umbenannt wurde oder wenn Aegis kürzlich aus einer Sicherung wiederhergestellt wurde. Bitte konfiguriere das Sicherungsziel neu.
     </string>
     <string name="backup_system_builtin">Automatische Sicherungen von Aegis</string>
     <string name="backup_system_android">Cloud-Sicherungssystem von Android</string>
@@ -459,7 +462,8 @@
     <string name="backup_reminder_bar_message">        Änderungen wurden noch nicht gesichert
     </string>
     <string name="backup_reminder_bar_dialog_title">Änderungen wurden noch nicht gesichert</string>
-    <string name="backup_reminder_bar_dialog_summary">        Kürzliche Änderungen an der Datenbank wurden noch nicht gesichert. Es ist wichtig, regelmäßig Sicherungen zu erstellen, damit du den Zugriff auf deine Konten nicht verlierst. Bitte denke daran, automatische Sicherungen im Einstellungsmenü einzurichten.
+    <string name="backup_reminder_bar_dialog_summary">
+        Kürzliche Änderungen an der Datenbank wurden noch nicht gesichert. Es ist wichtig, regelmäßig Sicherungen zu erstellen, damit du den Zugriff auf deine Konten nicht verlierst. Bitte denke daran, automatische Sicherungen im Einstellungsmenü einzurichten.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Sicherung einrichten</string>
     <string name="backup_plaintext_export_warning"><b>Die Datenbank wurde kürzlich im Klartext exportiert</b></string>

@@ -187,6 +187,7 @@
     <string name="password_reminder_freq_biweekly">14. dag</string>
     <string name="password_reminder_freq_monthly">Månedligt</string>
     <string name="password_reminder_freq_quarterly">Kvartalsvist</string>
+    <string name="enter_password_proton_message">Det lader til, at denne Proton Authenticator-sikkerhedskopi er krypteret. Angiv adgangskoden nedenfor.</string>
     <string name="enter_password_2fas_message">Det lader til, at denne 2FAS-sikkerhedskopi er krypteret. Angiv adgangskoden nedenfor.</string>
     <string name="enter_password_authy_message">Det ser ud til at Authy-tokenerne er krypterede. Luk Aegis, åbn Authy og oplås tokener med adgangskoden. Alternativ kan Aegis forsøge at dekryptere Authy-tokenerne, hvis adgangskode angives nedenfor.</string>
     <string name="enter_password_aegis_title">Angiv importadgangskoden</string>
@@ -448,18 +449,23 @@
     </plurals>
     <string name="google_qr_export_unexpected">Forventede QR-koden #%1$d, men skannede #%2$d i stedet</string>
     <string name="backup_error_bar_message"><b>Bokssikkerhedskopiering mislykkedes for nylig</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Et nyligt Boks-sikkerhedskopieringsforsøg vha. %1$s mislykkedes grundet en fejl. Sikkerhedskopieringen blev forsøgt: %2$s. Tjek sikkerhedskopieringsindstillingerne for at sikre, at sikkerhedskopieringer kan fuldføres.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Et nyligt Boks-sikkerhedskopieringsforsøg vha. %1$s mislykkedes grundet en fejl. Sikkerhedskopieringen blev forsøgt: %2$s. Tjek sikkerhedskopieringsindstillingerne for at sikre, at sikkerhedskopieringer kan fuldføres.
     </string>
-    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Et nyligt Boks-sikkerhedskopieringsforsøg vha. %1$s fejlede, da Aegis manglende skriverettighed på sikkerhedskopidestinationen. Sikkerhedskopieringen forsøgt %2$s. Fejlen kan opstå, hvis sikkerhedskopidestinationen er blevet flyttet/omdøbt, eller Aegis for nylig er gendannet fra en sikkerhedskopi. Genopsæt sikkerhedskopidestinationen.
+    <string name="backup_permission_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Et nyligt Boks-sikkerhedskopieringsforsøg vha. %1$s fejlede, da Aegis manglende skriverettighed på sikkerhedskopidestinationen. Sikkerhedskopieringen forsøgt %2$s. Fejlen kan opstå, hvis sikkerhedskopidestinationen er blevet flyttet/omdøbt, eller Aegis for nylig er gendannet fra en sikkerhedskopi. Genopsæt sikkerhedskopidestinationen.
     </string>
     <string name="backup_system_builtin">Aegis\' indbyggede automatiske sikkerhedskopieringer</string>
     <string name="backup_system_android">Android cloud-sikkerhedskopieringssystem</string>
-    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">        Seneste sikkerhedskopi er forældet (%s)
+    <string name="backup_reminder_bar_message_with_latest" comment="The parameter is an elapsed time in the style of 'x seconds/minutes/days ago'">
+        Seneste sikkerhedskopi er forældet (%s)
     </string>
-    <string name="backup_reminder_bar_message">        Ændringer er ikke sikkerhedskopieret
+    <string name="backup_reminder_bar_message">
+        Ændringer er ikke sikkerhedskopieret
     </string>
     <string name="backup_reminder_bar_dialog_title">Ændringer er ikke sikkerhedskopieret</string>
-    <string name="backup_reminder_bar_dialog_summary">        Nylige ændringer i Boksen er endnu ikke sikkerhedskopieret. Regelmæssig sikkerhedskopiering er vigtig for at undgå at miste adgang til konti. Overvej opsætning af automatisk sikkerhedskopiering i indstillingsmenuen.
+    <string name="backup_reminder_bar_dialog_summary">
+        Nylige ændringer i Boksen er endnu ikke sikkerhedskopieret. Regelmæssig sikkerhedskopiering er vigtig for at undgå at miste adgang til konti. Overvej opsætning af automatisk sikkerhedskopiering i indstillingsmenuen.
     </string>
     <string name="backup_reminder_bar_dialog_accept">Opsæt sikkerhedskopiering</string>
     <string name="backup_plaintext_export_warning"><b>Boksen blev for nylig eksporteret som alm. tekst</b></string>

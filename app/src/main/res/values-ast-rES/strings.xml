@@ -384,7 +384,8 @@
     <string name="google_qr_export_unrelated">Atopóse un códigu QR que nun tien rellación. Prueba a reaniciar l\'escaniador.</string>
     <string name="google_qr_export_unexpected">Esperábase\'l códigu QR #%1$d, mas escanióse\'l #%2$d</string>
     <string name="backup_error_bar_message"><b>La copia de seguranza de l\'arca falló apocayá</b></string>
-    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">        Falló un intentu recién de facer una copia de seguranza de l\'arca con «%1$s» porque se produxo un error (data de l\'aición: %2$s). Revisa la configuración pa que les copies de seguranza puedan facese correutamente.
+    <string name="backup_error_dialog_details" comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
+        Falló un intentu recién de facer una copia de seguranza de l\'arca con «%1$s» porque se produxo un error (data de l\'aición: %2$s). Revisa la configuración pa que les copies de seguranza puedan facese correutamente.
     </string>
     <string name="backup_system_builtin">Copies de seguranza automátiques d\'Aegis</string>
     <string name="backup_system_android">Sistema de copies de segurazan na ñube d\'Android</string>
