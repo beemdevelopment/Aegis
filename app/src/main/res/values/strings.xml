@@ -466,6 +466,8 @@
     </plurals>
     <string name="google_qr_export_unexpected">Expected QR code #%1$d, but scanned #%2$d instead</string>
     <string name="backup_error_bar_message"><b>Vault backup failed recently</b></string>
+    <string name="biometric_invalidated_bar_message"><b>Biometric unlock is disabled due to a change in Androids security settings. Tap here to re-enable.</b></string>
+    <string name="password_reminder_bar_message"><b>Please confirm your vault password</b></string>
     <string
         name="backup_error_dialog_details"
         comment="The first parameter is the type of backup (e.g. built-in or Android backup). The second parameter is an elapsed time in the style of 'x seconds/minutes/days ago'.">
