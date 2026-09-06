@@ -27,7 +27,7 @@ jobs:
         sed -i '/Importer.class/d' app/src/main/java/com/beemdevelopment/aegis/importers/DatabaseImporter.java
     - uses: actions/setup-java@v4
       with:
-        java-version: '17'
+        java-version: '21'
         distribution: 'temurin'
         cache: 'gradle'
     - name: Initialize CodeQL

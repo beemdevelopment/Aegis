@@ -434,14 +434,14 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         final int totalStateDuration = 7000;
         TotpInfo info = (TotpInfo) _entry.getInfo();
         if (info.getPeriod() * 1000 <= totalStateDuration) {
-            _profileCode.setTextColor(MaterialColors.getColor(_profileCode, com.google.android.material.R.attr.colorError));
+            _profileCode.setTextColor(MaterialColors.getColor(_profileCode, androidx.appcompat.R.attr.colorError));
             return;
         }
 
         // Workaround for when animations are disabled or Android version being too old
         float durationScale = AnimationsHelper.Scale.ANIMATOR.getValue(itemView.getContext());
         if (durationScale == 0.0 || Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            int color = MaterialColors.getColor(_profileCode, com.google.android.material.R.attr.colorError);
+            int color = MaterialColors.getColor(_profileCode, androidx.appcompat.R.attr.colorError);
             if (info.getMillisTillNextRotation() < totalStateDuration) {
                 _profileCode.setTextColor(color);
             } else {
@@ -459,7 +459,7 @@ public class EntryHolder extends RecyclerView.ViewHolder {
         delayAnim.setDuration((long) (delayAnimDuration / durationScale));
 
         int colorFrom = _profileCode.getCurrentTextColor();
-        int colorTo = MaterialColors.getColor(_profileCode, com.google.android.material.R.attr.colorError);
+        int colorTo = MaterialColors.getColor(_profileCode, androidx.appcompat.R.attr.colorError);
         ValueAnimator colorAnim = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
         colorAnim.setDuration((long) (colorShiftDuration / durationScale));
         colorAnim.addUpdateListener(a -> _profileCode.setTextColor((int) a.getAnimatedValue()));

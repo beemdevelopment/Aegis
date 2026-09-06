@@ -235,7 +235,7 @@ public class BackupsPreferencesFragment extends PreferencesFragment {
 
     private CharSequence getBackupStatusMessage(@Nullable Preferences.BackupResult res) {
         String message;
-        int colorAttr = com.google.android.material.R.attr.colorError;
+        int colorAttr = androidx.appcompat.R.attr.colorError;
         if (res == null) {
             message = getString(R.string.backup_status_none);
         } else if (res.isSuccessful()) {
