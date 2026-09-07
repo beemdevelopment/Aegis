@@ -628,6 +628,24 @@ public class Dialogs {
         showSecureDialog(alertDialog);
     }
 
+    public static void showMaxFailedAttemptsPickerDialog(Context context, int currentValue, NumberInputListener listener) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_number_picker, null);
+        NumberPicker numberPicker = view.findViewById(R.id.numberPicker);
+        numberPicker.setMinValue(1);
+        numberPicker.setMaxValue(100);
+        numberPicker.setValue(currentValue);
+        numberPicker.setWrapSelectorWheel(true);
+
+        AlertDialog dialog = new MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.pref_max_failed_attempts_title)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok, (dialog1, which) ->
+                        listener.onNumberInputResult(numberPicker.getValue()))
+                .create();
+
+        showSecureDialog(dialog);
+    }
+
     private static void setImporterHelpText(TextView view, DatabaseImporter.Definition definition, boolean isDirect) {
         if (isDirect) {
             view.setText(view.getResources().getString(R.string.importer_help_direct, definition.getName()));

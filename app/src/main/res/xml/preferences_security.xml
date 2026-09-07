@@ -82,6 +82,19 @@
             app:iconSpaceReserved="false"/>
 
         <androidx.preference.SwitchPreferenceCompat
+            android:key="pref_enable_data_wiping"
+            android:defaultValue="false"
+            android:title="@string/pref_enable_data_wiping_title"
+            android:summary="@string/pref_enable_data_wiping_summary"
+            app:iconSpaceReserved="false"/>
+
+        <Preference
+            android:key="pref_max_failed_attempts"
+            android:title="@string/pref_max_failed_attempts_title"
+            android:dependency="pref_enable_data_wiping"
+            app:iconSpaceReserved="false"/>
+
+        <androidx.preference.SwitchPreferenceCompat
             android:key="pref_pin_keyboard"
             android:dependency="pref_encryption"
             android:title="@string/pref_pin_keyboard_title"

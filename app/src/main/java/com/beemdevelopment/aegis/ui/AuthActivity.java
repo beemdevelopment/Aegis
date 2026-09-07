@@ -1,8 +1,10 @@
 package com.beemdevelopment.aegis.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
@@ -65,6 +67,15 @@ public class AuthActivity extends AegisActivity {
 
     private int _failedUnlockAttempts;
 
+    private static final String PREFS_NAME = "auth_prefs";
+    private static final String KEY_FAILED_ATTEMPTS = "failed_attempts";
+    private static final String KEY_LOCKOUT_UNTIL = "lockout_until";
+
+    private long _lockoutUntil = 0;
+
+    private TextView _textLockout;
+    private CountDownTimer _lockoutTimer;
+
     // the first time this activity is resumed after creation, it's possible to inhibit showing the
     // biometric prompt by setting 'inhibitBioPrompt' to true through the intent
     private boolean _inhibitBioPrompt;
@@ -74,10 +85,17 @@ public class AuthActivity extends AegisActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
+        _failedUnlockAttempts = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getInt(KEY_FAILED_ATTEMPTS, 0);
+        _lockoutUntil = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).getLong(KEY_LOCKOUT_UNTIL, 0);
+
         TextInputLayout layoutStandard = findViewById(R.id.layout_standard);
         TextInputLayout layoutNoAutofill = findViewById(R.id.layout_no_autofill);
         EditText editStandard = findViewById(R.id.text_password);
         EditText editNoAutofill = findViewById(R.id.text_password_no_autofill);
+
+        _textLockout = findViewById(R.id.lockout_message);
+
+        updateFailedAttemptsUI();
 
         if (_prefs.isPinKeyboardEnabled()) {
             layoutStandard.setVisibility(View.GONE);
@@ -91,6 +109,11 @@ public class AuthActivity extends AegisActivity {
 
         LinearLayout boxBiometricInfo = findViewById(R.id.box_biometric_info);
         _decryptButton = findViewById(R.id.button_decrypt);
+
+        if (isLockedOut()) {
+            startLockoutCountdown();
+        }
+
         TextView biometricsButton = findViewById(R.id.button_biometrics);
 
         getOnBackPressedDispatcher().addCallback(this, new BackPressHandler());
@@ -168,7 +191,17 @@ public class AuthActivity extends AegisActivity {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
+            if (isLockedOut()) {
+                return;
+            }
+
             char[] password = EditTextHelper.getEditTextChars(_textPassword);
+
+            if (password.length == 0) {
+                Toast.makeText(AuthActivity.this, getString(R.string.error_empty_password), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             List<PasswordSlot> slots = _slots.findAll(PasswordSlot.class);
             PasswordSlotDecryptTask.Params params = new PasswordSlotDecryptTask.Params(slots, password);
             PasswordSlotDecryptTask task = new PasswordSlotDecryptTask(AuthActivity.this, new PasswordDerivationListener());
@@ -220,11 +253,20 @@ public class AuthActivity extends AegisActivity {
             _bioPrompt = showBiometricPrompt();
         }
 
+        if (isLockedOut()) {
+            startLockoutCountdown();
+        }
+
         _inhibitBioPrompt = false;
     }
 
     @Override
     public void onPause() {
+        if (_lockoutTimer != null) {
+            _lockoutTimer.cancel();
+            _lockoutTimer = null;
+        }
+
         if (!isChangingConfigurations() && _bioPrompt != null) {
             _bioPrompt.cancelAuthentication();
             _bioPrompt = null;
@@ -306,24 +348,166 @@ public class AuthActivity extends AegisActivity {
             return;
         }
 
+        _failedUnlockAttempts = 0;
+        _lockoutUntil = 0;
+        saveFailedAttempts();
+        saveLockoutUntil();
+        updateFailedAttemptsUI();
+
+        if (_lockoutTimer != null) {
+            _lockoutTimer.cancel();
+            _lockoutTimer = null;
+        }
+
+        _textLockout.setText("");
+        _decryptButton.setEnabled(true);
+
         setResult(RESULT_OK);
         finish();
     }
 
     private void onInvalidPassword() {
-        Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(AuthActivity.this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
-                .setTitle(getString(R.string.unlock_vault_error))
-                .setMessage(getString(R.string.unlock_vault_error_description))
-                .setCancelable(false)
-                .setIconAttribute(android.R.attr.alertDialogIcon)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
-                .create());
+        _failedUnlockAttempts++;
+        applyLockout();
+        saveFailedAttempts();
 
-        _failedUnlockAttempts ++;
+        if (shouldWipeVault()) {
+            wipeVaultAndExit();
+            return;
+        }
+
+        if (_prefs.isDataWipingEnabled() && _failedUnlockAttempts == _prefs.getMaxFailedAttemptsBeforeWipe() - 1) {
+            showDangerDialog();
+        } else {
+            Dialogs.showSecureDialog(new MaterialAlertDialogBuilder(AuthActivity.this, R.style.ThemeOverlay_Aegis_AlertDialog_Error)
+                    .setTitle(getString(R.string.unlock_vault_error))
+                    .setMessage(getString(R.string.unlock_vault_error_description))
+                    .setCancelable(false)
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> selectPassword())
+                    .create());
+        }
+
+        updateFailedAttemptsUI();
+
+        if (isLockedOut()) {
+            startLockoutCountdown();
+        }
 
         if (_failedUnlockAttempts >= 3) {
             _textPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
+    }
+
+    private void updateFailedAttemptsUI() {
+        if (_textLockout != null) {
+            if (isLockedOut()) {
+                _textLockout.setVisibility(View.VISIBLE);
+            } else {
+                _textLockout.setText("");
+                _textLockout.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void saveFailedAttempts() {
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            .edit()
+            .putInt(KEY_FAILED_ATTEMPTS, _failedUnlockAttempts)
+            .apply();
+    }
+
+    private void saveLockoutUntil() {
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            .edit()
+            .putLong(KEY_LOCKOUT_UNTIL, _lockoutUntil)
+            .apply();
+    }
+
+    private boolean isLockedOut() {
+        return System.currentTimeMillis() < _lockoutUntil;
+    }
+
+    private long getRemainingLockoutMillis() {
+        return Math.max(0, _lockoutUntil - System.currentTimeMillis());
+    }
+
+    private void applyLockout() {
+        if (_failedUnlockAttempts < 3) {
+            return;
+        }
+
+        int step = _failedUnlockAttempts - 3;
+        long base = 60_000; // 1 min
+
+        long timeoutMillis = base * (step + 1) * (step + 2) / 2;
+
+        long maxTimeout = 60 * 60_000; // 1 hour
+        timeoutMillis = Math.min(timeoutMillis, maxTimeout);
+
+        _lockoutUntil = System.currentTimeMillis() + timeoutMillis;
+        saveLockoutUntil();
+    }
+
+    private void startLockoutCountdown() {
+        if (_lockoutTimer != null) {
+            _lockoutTimer.cancel();
+        }
+
+        long remaining = getRemainingLockoutMillis();
+
+        if (remaining <= 0) {
+            _textLockout.setText("");
+            _decryptButton.setEnabled(true);
+            return;
+        }
+
+        _decryptButton.setEnabled(false);
+
+        _lockoutTimer = new CountDownTimer(remaining, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long totalSeconds = (millisUntilFinished + 999) / 1000;
+
+                long minutes = totalSeconds / 60;
+                long seconds = totalSeconds % 60;
+
+                @SuppressLint("DefaultLocale") String timeFormatted = String.format("%02d:%02d", minutes, seconds);
+
+                _textLockout.setText(
+                        getString(R.string.lockout_message, _failedUnlockAttempts, timeFormatted)
+                );
+            }
+
+            @Override
+            public void onFinish() {
+                _textLockout.setText("");
+                _textLockout.setVisibility(View.GONE);
+                _decryptButton.setEnabled(true);
+                _lockoutTimer = null;
+            }
+        }.start();
+    }
+
+    private boolean shouldWipeVault() {
+        return _prefs.isDataWipingEnabled() && _failedUnlockAttempts >= _prefs.getMaxFailedAttemptsBeforeWipe();
+    }
+
+    private void wipeVaultAndExit() {
+        _failedUnlockAttempts = 0;
+        _lockoutUntil = 0;
+        saveFailedAttempts();
+        saveLockoutUntil();
+
+        VaultRepository.deleteFile(this);
+        _vaultManager.lock(false);
+
+        finishApp();
+    }
+
+    private void finishApp() {
+        ExitActivity.exitAppAndRemoveFromRecents(this);
+        finishAndRemoveTask();
     }
 
     private class BackPressHandler extends OnBackPressedCallback {
@@ -361,6 +545,46 @@ public class AuthActivity extends AegisActivity {
                 onInvalidPassword();
             }
         }
+    }
+
+    private void showDangerDialog() {
+        final int delayMillis = 5000;
+
+        androidx.appcompat.app.AlertDialog dialog = new MaterialAlertDialogBuilder(
+                AuthActivity.this,
+                R.style.ThemeOverlay_Aegis_AlertDialog_Error
+        )
+                .setTitle(getString(R.string.unlock_vault_error_danger))
+                .setMessage(getString(R.string.unlock_vault_error_description_danger))
+                .setCancelable(false)
+                .setIcon(R.drawable.ic_warning_24)
+                .setPositiveButton(getString(android.R.string.ok), null)
+                .create();
+
+        dialog.setOnShowListener(d -> {
+            Button positiveButton = dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE);
+            positiveButton.setEnabled(false);
+
+            new CountDownTimer(delayMillis, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    long secondsLeft = (millisUntilFinished + 999) / 1000;
+                    positiveButton.setText(getString(R.string.ok_with_timer, secondsLeft));
+                }
+
+                @Override
+                public void onFinish() {
+                    positiveButton.setText(getString(android.R.string.ok));
+                    positiveButton.setEnabled(true);
+                    positiveButton.setOnClickListener(v -> {
+                        dialog.dismiss();
+                        selectPassword();
+                    });
+                }
+            }.start();
+        });
+
+        Dialogs.showSecureDialog(dialog);
     }
 
     private class BiometricPromptListener extends BiometricPrompt.AuthenticationCallback {

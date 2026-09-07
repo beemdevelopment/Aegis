@@ -46,6 +46,8 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
     private SwitchPreferenceCompat _pinKeyboardPreference;
     private SwitchPreference _backupPasswordPreference;
     private Preference _backupPasswordChangePreference;
+    private SwitchPreferenceCompat _dataWipingPreference;
+    private Preference _maxFailedAttemptsPreference;
 
     @Override
     public void onResume() {
@@ -251,6 +253,26 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
         _backupPasswordChangePreference = requirePreference("pref_backup_password_change");
         _backupPasswordChangePreference.setOnPreferenceClickListener(preference -> {
             Dialogs.showSetPasswordDialog(requireActivity(), new SetBackupPasswordListener());
+            return false;
+        });
+
+        _dataWipingPreference = requirePreference("pref_enable_data_wiping");
+        _maxFailedAttemptsPreference = requirePreference("pref_max_failed_attempts");
+        _maxFailedAttemptsPreference.setSummary(
+                getString(R.string.pref_max_failed_attempts_summary, _prefs.getMaxFailedAttemptsBeforeWipe())
+        );
+
+        _maxFailedAttemptsPreference.setOnPreferenceClickListener(preference -> {
+            Dialogs.showMaxFailedAttemptsPickerDialog(
+                    requireContext(),
+                    _prefs.getMaxFailedAttemptsBeforeWipe(),
+                    number -> {
+                        _prefs.setMaxFailedAttemptsBeforeWipe(number);
+                        _maxFailedAttemptsPreference.setSummary(
+                                getString(R.string.pref_max_failed_attempts_summary, number)
+                        );
+                    }
+            );
             return false;
         });
     }
