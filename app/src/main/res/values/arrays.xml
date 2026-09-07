@@ -11,6 +11,7 @@
     <string-array name="otp_algo_array">
         <item>SHA1</item>
         <item>SHA256</item>
+        <item>SHA384</item>
         <item>SHA512</item>
     </string-array>
 

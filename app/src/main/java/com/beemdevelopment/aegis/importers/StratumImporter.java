@@ -54,6 +54,7 @@ public class StratumImporter extends DatabaseImporter {
     private enum Algorithm {
         SHA1,
         SHA256,
+        SHA384,
         SHA512
     }
 
