@@ -1,0 +1,1 @@
+Aegis, aplicativo de autenticação de dois fatores (2FA) gratuito, seguro e de código aberto para gerenciar tokens dos seus serviços online.

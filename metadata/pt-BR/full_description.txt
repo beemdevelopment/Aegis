@@ -1,0 +1,17 @@
+<b>Compatibilidade</b>
+O Aegis é compatível com os algoritmos HOTP e TOTP. Esses dois algoritmos são padrão do setor e amplamente suportados, tornando o Aegis compatível com milhares de serviços. Qualquer serviço web compatível com o Google Authenticator também funciona com o Aegis Authenticator.
+
+<b>Criptografia e desbloqueio biométrico</b>
+Todas as suas senhas de uso único são armazenadas em um cofre. Se você optar por definir uma senha (altamente recomendado), o cofre será criptografado usando criptografia robusta. Se alguém com intenções maliciosas conseguir o arquivo do cofre, será impossível recuperar o conteúdo sem saber a senha. Digitar sua senha toda vez que precisar acessar uma senha de uso único pode ser incômodo. Felizmente, você também pode ativar o desbloqueio biométrico se o seu dispositivo tiver um sensor biométrico (por exemplo, desbloqueio por impressão digital ou facial).
+
+<b>Organização</b>
+Com o tempo, você provavelmente acumulará dezenas de entradas no seu cofre. O Aegis Authenticator oferece várias opções de organização para facilitar a localização da entrada necessária em um determinado momento. Defina um ícone personalizado para uma entrada para facilitar a localização. Pesquise por nome de conta ou nome de serviço. Tem muitas senhas de uso único? Adicione-as a grupos personalizados para facilitar o acesso. Pessoal, Trabalho e Social podem ter seus próprios grupos
+
+<b>Backups</b>
+Para garantir que você nunca perca o acesso às suas contas online, o Aegis Authenticator pode criar backups automáticos do cofre em um local de sua escolha. Se o seu provedor de nuvem for compatível com o Storage Access Framework do Android (como o Nextcloud), ele pode até mesmo criar backups automáticos na nuvem. Também é possível criar exportações manuais do cofre.
+
+<b>Fazendo a transição</b>
+Para facilitar a transição, o Aegis Authenticator pode importar as entradas de vários outros autenticadores, incluindo: 2FAS Authenticator, Authenticator Plus, Authy, andOTP, FreeOTP, FreeOTP+, Google Authenticator, Microsoft Authenticator, Steam, TOTP Authenticator e WinAuth (é necessário acesso root para os aplicativos que não possuem a opção de exportação).
+
+<b>Código aberto e licença</b>
+O Aegis Authenticator é de código aberto (licenciado sob a GPL v3) e o código-fonte pode ser encontrado aqui: http://github.com/beemdevelopment/Aegis
