@@ -343,7 +343,7 @@
                                 android:id="@+id/text_period_counter"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text"/>
+                                android:inputType="number"/>
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/text_digits_layout"
@@ -356,7 +356,7 @@
                                 android:id="@+id/text_digits"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="text"/>
+                                android:inputType="number"/>
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                     <LinearLayout
