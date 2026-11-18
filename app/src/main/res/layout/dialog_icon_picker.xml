@@ -35,12 +35,11 @@
         </LinearLayout>
         <ImageButton
             android:id="@+id/btn_icon_pack"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="12dp"
-            android:scaleType="centerCrop"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_outline_more_vert_24"
             app:tint="?attr/colorOnSurfaceVariant" />
