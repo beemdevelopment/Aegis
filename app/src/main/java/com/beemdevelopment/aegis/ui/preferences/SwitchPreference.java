@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import androidx.preference.Preference;
 import androidx.preference.SwitchPreferenceCompat;
+import com.beemdevelopment.aegis.R;
 
 public class SwitchPreference extends SwitchPreferenceCompat {
     private Preference.OnPreferenceChangeListener _listener;
@@ -22,7 +23,8 @@ public class SwitchPreference extends SwitchPreferenceCompat {
     }
 
     public SwitchPreference(Context context) {
-        super(context);
+    super(context);
+    setWidgetLayoutResource(R.layout.preference_widget_switch_custom);
     }
 
     @Override
