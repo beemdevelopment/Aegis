@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.SwitchCompat
+<com.google.android.material.materialswitch.MaterialSwitch
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@android:id/switch_widget"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:thumb="@drawable/switch_thumb"
     android:clickable="false"
-    android:focusable="false" />
+    android:focusable="false"
+    app:thumbIcon="@drawable/switch_thumb_icon" />
