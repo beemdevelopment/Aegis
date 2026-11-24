@@ -594,6 +594,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
                 saveAndBackupVault();
                 _actionMode.finish();
                 setGroups(_vaultManager.getVault().getUsedGroups());
+                _entryListView.setEntries(_vaultManager.getVault().getEntries());
             });
         });
 
