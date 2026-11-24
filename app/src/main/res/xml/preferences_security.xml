@@ -53,14 +53,14 @@
     <PreferenceCategory
         android:title="@string/pref_section_behavior_title"
         app:iconSpaceReserved="false">
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="@bool/pref_secure_screen_default"
             android:key="pref_secure_screen"
             android:title="@string/pref_secure_screen_title"
             android:summary="@string/pref_secure_screen_summary"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="false"
             android:key="pref_tap_to_reveal"
             android:title="@string/pref_tap_to_reveal_title"
@@ -81,14 +81,14 @@
             android:summary="@string/pref_auto_lock_summary"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:key="pref_pin_keyboard"
             android:dependency="pref_encryption"
             android:title="@string/pref_pin_keyboard_title"
             android:summary="@string/pref_pin_keyboard_summary"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="false"
             android:key="pref_panic_trigger"
             android:title="@string/pref_panic_trigger_title"
