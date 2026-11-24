@@ -11,7 +11,7 @@
             android:title="@string/pref_select_theme_title"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="false"
             android:key="pref_dynamic_colors"
             android:title="@string/pref_dynamic_colors_title"
@@ -34,21 +34,21 @@
             android:title="@string/pref_view_mode_title"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="true"
             android:key="pref_show_icons"
             android:title="@string/pref_show_icons_title"
             android:summary="@string/pref_show_icons_summary"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="false"
             android:key="pref_show_next_code"
             android:title="@string/pref_show_next_code_title"
             android:summary="@string/pref_show_next_code_summary"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="true"
             android:key="pref_expiration_state"
             android:title="@string/pref_expiration_state_title"
@@ -67,7 +67,7 @@
             android:title="@string/pref_account_name_position_title"
             app:iconSpaceReserved="false"/>
 
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="false"
             android:key="pref_shared_issuer_account_name"
             android:title="@string/pref_shared_issuer_account_name_title"
