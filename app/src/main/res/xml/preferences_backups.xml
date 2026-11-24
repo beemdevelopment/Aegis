@@ -11,14 +11,14 @@
         app:icon="@drawable/ic_outline_info_24" />
     <PreferenceCategory
         android:title="@string/pref_cat_backups_auto">
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="false"
             android:key="pref_backups"
             android:title="@string/pref_backups_title"
             android:summary="@string/pref_backups_summary"
             app:icon="@drawable/ic_outline_cloud_upload_24" />
 
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:key="pref_backup_reminder"
             android:title="@string/pref_backups_reminder_title"
             android:summary="@string/pref_backups_reminder_summary" />
@@ -45,7 +45,7 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/pref_cat_backups_android">
-        <androidx.preference.SwitchPreferenceCompat
+        <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
             android:defaultValue="false"
             android:key="pref_android_backups"
             android:title="@string/pref_android_backups_title"
