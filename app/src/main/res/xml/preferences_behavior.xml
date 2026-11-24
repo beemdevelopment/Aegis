@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/pref_section_behavior_title">
-    <androidx.preference.SwitchPreferenceCompat
+    <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
         android:defaultValue="false"
         android:key="pref_focus_search"
         android:title="@string/pref_focus_search"
@@ -13,7 +13,7 @@
         android:key="pref_search_behavior"
         android:title="@string/pref_search_behavior_title"
         app:iconSpaceReserved="false"/>
-    <androidx.preference.SwitchPreferenceCompat
+    <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
         android:defaultValue="false"
         android:key="pref_minimize_on_copy"
         android:title="@string/pref_minimize_on_copy_title"
@@ -26,27 +26,27 @@
         android:title="@string/pref_copy_behavior_title"
         app:iconSpaceReserved="false"/>
 
-    <androidx.preference.SwitchPreferenceCompat
+    <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
         android:defaultValue="true"
         android:key="pref_haptic_feedback"
         android:title="@string/pref_haptic_feedback_title"
         android:summary="@string/pref_haptic_feedback_summary"
         app:iconSpaceReserved="false"/>
 
-    <androidx.preference.SwitchPreferenceCompat
+    <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
         android:defaultValue="false"
         android:key="pref_groups_multiselect"
         android:title="@string/pref_groups_multiselect_title"
         android:summary="@string/pref_groups_multiselect_summary"
         app:iconSpaceReserved="false"/>
 
-    <androidx.preference.SwitchPreferenceCompat
+    <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
         android:defaultValue="false"
         android:key="pref_highlight_entry"
         android:title="@string/pref_highlight_entry_title"
         android:summary="@string/pref_highlight_entry_summary"
         app:iconSpaceReserved="false"/>
-    <androidx.preference.SwitchPreferenceCompat
+    <com.beemdevelopment.aegis.ui.preferences.SwitchPreference
         android:defaultValue="false"
         android:key="pref_pause_entry"
         android:title="@string/pref_pause_entry_title"
