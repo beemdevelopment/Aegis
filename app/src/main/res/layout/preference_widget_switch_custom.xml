@@ -2,7 +2,7 @@
 <com.google.android.material.materialswitch.MaterialSwitch
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@android:id/switch_widget"
+    android:id="@id/switchWidget"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clickable="false"
