@@ -918,12 +918,25 @@ public class EditEntryActivity extends AegisActivity {
                     .setTitle(R.string.dialog_duplicate_entry_overwrite_dialog_title)
                     .setMessage(message)
                     .setPositiveButton(R.string.action_delete, (d, which) -> {
-                        for (VaultEntry dup : duplicates) {
-                            _vaultManager.getVault().removeEntry(dup);
+                        VaultEntry anchor = duplicates.get(0);
+
+                        if (_textNote.getText().length() == 0 && !anchor.getNote().isEmpty()) {
+                            _textNote.setText(anchor.getNote());
                         }
 
+                        if (_selectedGroups.isEmpty() && !anchor.getGroups().isEmpty()) {
+                            _selectedGroups.addAll(anchor.getGroups());
+                        }
+
+                        for (int i = 1; i < duplicates.size(); i++) {
+                            _vaultManager.getVault().removeEntry(duplicates.get(i));
+                        }
+
+                        _origEntry = anchor;
+                        _isNew = false;
+
                         dialog.dismiss();
-                        addAndFinish(newEntry);
+                        onSave();
                     })
                     .setNegativeButton(android.R.string.no, null)
                     .show();
