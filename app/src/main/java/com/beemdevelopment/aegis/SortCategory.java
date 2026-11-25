@@ -36,13 +36,13 @@ public enum SortCategory {
                 comparator = new AccountNameComparator().thenComparing(new IssuerNameComparator());
                 break;
             case ACCOUNT_REVERSED:
-                comparator = Collections.reverseOrder(new AccountNameComparator().thenComparing(new IssuerNameComparator()));
+                comparator = Collections.reverseOrder(new AccountNameComparator()).thenComparing(new IssuerNameComparator());
                 break;
             case ISSUER:
                 comparator = new IssuerNameComparator().thenComparing(new AccountNameComparator());
                 break;
             case ISSUER_REVERSED:
-                comparator = Collections.reverseOrder(new IssuerNameComparator().thenComparing(new AccountNameComparator()));
+                comparator = Collections.reverseOrder(new IssuerNameComparator()).thenComparing(new AccountNameComparator());
                 break;
             case USAGE_COUNT:
                 comparator = Collections.reverseOrder(new UsageCountComparator());
