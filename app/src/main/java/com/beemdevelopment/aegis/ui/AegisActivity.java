@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.core.view.ViewPropertyAnimatorCompat;
+import androidx.lifecycle.Lifecycle;
 
 import com.beemdevelopment.aegis.Preferences;
 import com.beemdevelopment.aegis.R;
@@ -96,6 +97,12 @@ public abstract class AegisActivity extends AppCompatActivity implements VaultMa
     @Override
     public void onLocked(boolean userInitiated) {
         setResult(RESULT_CANCELED, null);
+
+        // In the background, keep the task: MainActivity asks for auth when the user returns
+        if (!getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+            finish();
+            return;
+        }
 
         try {
             // Call a private overload of the finish() method to prevent the app

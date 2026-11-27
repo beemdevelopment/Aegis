@@ -41,6 +41,7 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Lifecycle;
 
 import com.beemdevelopment.aegis.GroupPlaceholderType;
 import com.beemdevelopment.aegis.Preferences;
@@ -1362,7 +1363,7 @@ public class MainActivity extends AegisActivity implements EntryListView.Listene
 
         if (userInitiated) {
             startAuthActivity(true);
-        } else {
+        } else if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
             super.onLocked(false);
         }
     }
