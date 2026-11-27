@@ -51,6 +51,12 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
     public void onResume() {
         super.onResume();
         updateEncryptionPreferences();
+
+        if (requireActivity().getIntent().getBooleanExtra("reenableBiometrics", false)) {
+            requireActivity().getIntent().removeExtra("reenableBiometrics");
+            disableBiometricUnlock();
+            enableBiometricUnlock();
+        }
     }
 
     @Override
@@ -109,36 +115,11 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
 
         _biometricsPreference = requirePreference("pref_biometrics");
         _biometricsPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
-            SlotList slots = creds.getSlots();
-
-            if (!slots.has(BiometricSlot.class)) {
-                if (BiometricsHelper.isAvailable(requireContext())) {
-                    BiometricSlotInitializer initializer = new BiometricSlotInitializer(SecurityPreferencesFragment.this, new RegisterBiometricsListener());
-                    BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
-                            .setTitle(getString(R.string.set_up_biometric))
-                            .setNegativeButtonText(getString(android.R.string.cancel))
-                            .build();
-                    initializer.authenticate(info);
-                }
+            if ((boolean) newValue) {
+                enableBiometricUnlock();
             } else {
-                // remove the biometric slot
-                BiometricSlot slot = slots.find(BiometricSlot.class);
-                slots.remove(slot);
-                _vaultManager.getVault().setCredentials(creds);
-
-                // remove the KeyStore key
-                try {
-                    KeyStoreHandle handle = new KeyStoreHandle();
-                    handle.deleteKey(slot.getUUID().toString());
-                } catch (KeyStoreHandleException e) {
-                    e.printStackTrace();
-                }
-
-                saveAndBackupVault();
-                updateEncryptionPreferences();
+                disableBiometricUnlock();
             }
-
             return false;
         });
 
@@ -253,6 +234,39 @@ public class SecurityPreferencesFragment extends PreferencesFragment {
             Dialogs.showSetPasswordDialog(requireActivity(), new SetBackupPasswordListener());
             return false;
         });
+    }
+
+    private void enableBiometricUnlock() {
+        if (BiometricsHelper.isAvailable(requireContext())) {
+            BiometricSlotInitializer initializer = new BiometricSlotInitializer(this, new RegisterBiometricsListener());
+            BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
+                    .setTitle(getString(R.string.set_up_biometric))
+                    .setNegativeButtonText(getString(android.R.string.cancel))
+                    .build();
+            initializer.authenticate(info);
+        }
+    }
+
+    private void disableBiometricUnlock() {
+        VaultFileCredentials creds = _vaultManager.getVault().getCredentials();
+        SlotList slots = creds.getSlots();
+        BiometricSlot slot = slots.find(BiometricSlot.class);
+        if (slot == null) {
+            return;
+        }
+
+        slots.remove(slot);
+        _vaultManager.getVault().setCredentials(creds);
+
+        try {
+            KeyStoreHandle handle = new KeyStoreHandle();
+            handle.deleteKey(slot.getUUID().toString());
+        } catch (KeyStoreHandleException e) {
+            e.printStackTrace();
+        }
+
+        saveAndBackupVault();
+        updateEncryptionPreferences();
     }
 
     private void updateEncryptionPreferences() {

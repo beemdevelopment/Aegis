@@ -49,6 +49,8 @@ public class PreferencesTest {
         assertTrue(prefs.isPasswordReminderNeeded(currTime));
         prefs.setPasswordReminderTimestamp(currTime - freq.getDurationMillis() - 1);
         assertTrue(prefs.isPasswordReminderNeeded(currTime));
+        prefs.resetPasswordReminderTimestamp();
+        assertFalse(prefs.isPasswordReminderNeeded());
 
         // a password reminder should no longer be needed if it's configured to be less frequent than before
         freq = PassReminderFreq.BIWEEKLY;
