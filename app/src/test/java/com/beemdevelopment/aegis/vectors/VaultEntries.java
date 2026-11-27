@@ -26,7 +26,8 @@ public class VaultEntries {
                     new VaultEntry(new HotpInfo(Base32.decode("KUVJJOM753IHTNDSZVCNKL7GII"), "SHA256", 7, 50), "Benjamin", "Air Canada"),
                     new VaultEntry(new HotpInfo(Base32.decode("5VAML3X35THCEBVRLV24CGBKOY"), "SHA512", 8, 10300), "Mason", "WWE"),
                     new VaultEntry(new SteamInfo(Base32.decode("JRZCL47CMXVOQMNPZR2F7J4RGI"), "SHA1", 5, 30), "Sophia", "Boeing"),
-                    new VaultEntry(new TotpInfo(Base32.decode("BMGRXPGFARQQF4GMT25JATL2VYLAHDBI"), "SHA1", 8, 30), "US-2211-2050-3346", "Battle.net")
+                    new VaultEntry(new TotpInfo(Base32.decode("BMGRXPGFARQQF4GMT25JATL2VYLAHDBI"), "SHA1", 8, 30), "US-2211-2050-3346", "Battle.net"),
+                    new VaultEntry(new TotpInfo(Base32.decode("GA3GGZBZGQYGCMBUGVRTCYRTGAFA"), "SHA384", 6, 30), "Jason", "Google")
             );
         } catch (OtpInfoException | EncodingException e) {
             throw new RuntimeException(e);

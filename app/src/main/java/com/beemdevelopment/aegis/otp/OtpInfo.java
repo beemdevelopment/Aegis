@@ -77,7 +77,8 @@ public abstract class OtpInfo implements Serializable {
 
     public static boolean isAlgorithmValid(String algorithm) {
         return algorithm.equals("SHA1") || algorithm.equals("SHA256") ||
-                algorithm.equals("SHA512") || algorithm.equals("MD5");
+                algorithm.equals("SHA384") || algorithm.equals("SHA512") ||
+                algorithm.equals("MD5");
     }
 
     public void setAlgorithm(String algorithm) throws OtpInfoException {

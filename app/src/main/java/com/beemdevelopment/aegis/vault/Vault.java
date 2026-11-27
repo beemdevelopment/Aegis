@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class Vault {
-    private static final int VERSION = 3;
+    private static final int VERSION = 4;
     private final UUIDMap<VaultEntry> _entries = new UUIDMap<>();
     private final UUIDMap<VaultGroup> _groups = new UUIDMap<>();
     private boolean _iconsOptimized = true;
